@@ -1,0 +1,32 @@
+  .proizvod-kontejner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .proizvod-kartica {
+    width: calc(33.33% - 10px);
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .proizvod-kartica img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .proizvod-kartica h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 24px;
+  }
+  
+  .proizvod-kartica p.cena {
+    font-size: 20px;
+    color: #f00;
+    margin-top: 5px;
+  }
