@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./Pocetna.module.css";
-import video from "../images/lukabickeji1video.mp4";
 import instaicon from "../images/instaicon.png";
-import bickejinovivideo from "../images/bickejinovivideo.mp4";
 import undologoo from '../images/undologoo.jpg'
 
 const Pocetna = () => {
@@ -31,7 +29,7 @@ const Pocetna = () => {
           </Link>
           <div className={classes.instagram}>
             <a
-              href="https://www.instagram.com/berbernica_luka_bickeji/"
+              href="https://www.instagram.com/zecevic__a/"
               target="_blank"
               rel="noopener noreferrer"
             >
