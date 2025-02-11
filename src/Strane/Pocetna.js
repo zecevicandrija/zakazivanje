@@ -23,7 +23,7 @@ const Pocetna = () => {
       <img src={undologoo} alt="LOGO" className={classes.firstImage}/>
         <div className={classes.info}>
           <h1>Undo Vrbas</h1>
-          <h2>Software za zakazivanje</h2>
+          <h2>Software za zakazivanje termina</h2>
           <Link to={"/Odabrirfrizera"} className={classes.button}>
             ZAKAŽI TERMIN
           </Link>
