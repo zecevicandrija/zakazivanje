@@ -1,0 +1,156 @@
+/* Osnovni stilovi */
+.kartica-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 4vh;
+}
+
+.centriranje-div { 
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 5vh;
+}
+
+.kartica {
+  width: 300px;
+  height: auto;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kartica:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.ime-usluge1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.slika-frizera {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+}
+
+.kartica-dugmad {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.kartica-dugmad > button:first-child {
+  margin-right: 0.5rem;
+  background-color: #007bff;
+  color: white;
+}
+
+.kartica-dugmad > button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.dodajfrizeradugme {
+  margin: 2rem;
+  background-color: #28a745;
+  color: white;
+}
+
+.dodajfrizeradugme:hover {
+  background-color: #218838;
+  color: white;
+}
+
+.dugme1-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.dugme1 {
+  padding: 0.5rem 2rem;
+  background-color: #ffca42;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dugme1:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.modal-question {
+  font-size: 1.2rem;
+}
+
+.modal-button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+
+.modal-button-cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+.modal-button-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cekbox {
+  margin-top: 1rem;
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 480px) {
+  .kartica {
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+
+  .dugme1 {
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .kartica {
+    width: 45%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .kartica {
+    width: 30%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .kartica {
+    width: 20%;
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,240 @@
+body {
+  margin: 5rem;
+}
+
+.barberpozadina {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ovaj stil će omogućiti da video pokriva celu pozadinu */
+  z-index: -1;
+  filter: blur(6px); 
+}
+
+.barberwallpaper {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+h1.naslov {
+  font-family: 'Teko', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content img {
+  max-width: 20%;
+  border-radius: 8px;
+}
+
+.text {
+  max-width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.text h1 {
+  color: #f08e0f;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+
+
+.informacije {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  justify-content: space-between;
+}
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: auto;
+}
+
+.info-icon {
+  font-size: 35px;
+  font-weight: bold;
+  color: #f08e0f;
+  font-family: 'Teko', sans-serif;
+}
+
+.info-text {
+  font-size: 22px;
+  color: black;
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+}
+
+.vertical-line {
+  width: 2px;
+  height: 80px;
+  background-color: #f08e0f;
+  margin: 0 20px;
+}
+
+.content img,
+.guglmapa {
+  max-width: 60%;
+  border-radius: 8px;
+  border: 2px solid #f08e0f;
+}
+
+.text,
+.guglmapa {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.text h1,
+.guglmapa {
+  color: #f08e0f;
+  margin-bottom: 5px;
+}
+
+.sajtradili {
+ 
+  border: 2px solid #000; /* Crveni okvir */
+  color: #000;
+  padding: 10px; /* Dodajte padding prema potrebi */
+  display: inline-block; /* Postavite da se prikaže kao blok unutar teksta */
+  border-radius: 5px; /* Dodajte zaobljenje ivica ako želite */
+  margin-top: 1px;
+}
+
+.naslov {
+  font-family: 'Teko', sans-serif;
+}
+
+
+@media screen and (max-width: 768px) {
+  body {
+    margin: 1.9rem; 
+  }
+  .content {
+    flex-direction: column;
+  }
+
+  .content img {
+    max-width: 100%;
+    margin-bottom: 1%;
+  }
+
+  .text {
+    max-width: 100%;
+  }
+
+  .text h1 {
+    font-size: 30px; /* Prilagodite veličinu teksta prema potrebi */
+  }
+
+  .reverse {
+    flex-direction: column-reverse;
+  }
+
+  .info-box {
+    width: 100%; /* Postavljamo širinu na 50% kako bi bile dve kolone u svakom redu */
+    padding: 10px;
+    text-align: center;
+  }
+
+  .vertical-line {
+    width: 100%; /* Postavljamo širinu na 100% kako bi bila horizontalna linija */
+    height: 2px; /* Postavljamo visinu na 2px (ili drugu vrednost po potrebi) */
+    margin: 10px 0; /* Dodajemo razmak iznad i ispod linije */
+  }
+
+
+
+  .informacije {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lokacija-info p {
+    font-size: 22px; /* Prilagodite veličinu teksta prema potrebi */
+    backdrop-filter: blur(5px);
+  }
+
+  .text p {
+    font-size: 19px; /* Prilagodite veličinu teksta prema potrebi */
+    backdrop-filter: blur(5px);
+  }
+}
+
+@media screen and (min-width: 1400px)  {
+
+  body {
+    margin: 5rem;
+  }
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .content img,
+  .reverse img {
+    max-width: 60%;
+  }
+
+  .text {
+    max-width: 40%;
+  }
+  .text p {
+    font-size: 19px; /* Prilagodite veličinu teksta prema potrebi */
+    backdrop-filter: blur(5px);
+  }
+
+
+  .lokacija-info p {
+    font-size: 24px;
+    backdrop-filter: blur(5px);
+  }
+
+  .info-box {
+    width: 10%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .vertical-line {
+    width: 2px;
+    height: 80px;
+    background-color: #f08e0f;
+    margin: 0;
+  }
+
+  .guglmapa {
+    max-width: 60%;
+    margin-top: 20px;
+  }
+}
+
+/* @media screen and (max-width: 1300px) and (min-width: 769px)  {
+  .content img,
+  .reverse img {
+    width: 60%;
+    
+
+  }
+} */

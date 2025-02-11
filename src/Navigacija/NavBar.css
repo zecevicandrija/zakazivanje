@@ -1,0 +1,91 @@
+/* NavBar.css */
+
+/* Osnovni stil za transparentan prazan prostor */
+.navbar-space {
+  /* Visina praznog prostora */
+  background-color: #000;
+  opacity: 0.4; /* Transparentna boja pozadine */
+}
+
+/* Osnovni stil za navbar */
+.navbar-target {
+  background-color: #000;
+  opacity: 0.8; /* Transparentna pozadina */
+  position: fixed; /* Promenjeno na fixed */
+  top: 0;
+  left: 0;
+  height: 100%; /* Promenjeno na visinu ekrana */
+  width: 100px; /* Promenjeno na fiksnu širinu */
+  display: flex;
+  flex-direction: column; /* Promenjeno na vertikalni layout */
+  justify-content: flex-start; /* Počinje od vrha */
+  align-items: center;
+  padding-top: 20px; /* Dodat padding na vrhu */
+  z-index: 1; /* Ispred ostalog sadržaja */
+}
+
+/* Stil za logo u Navbar-u */
+.logo {
+  width: 50px; /* Promenjeno za manji logo */
+  height: 50px;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  margin-bottom: 20px; /* Dodat margin na dnu loga */
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Povećanje na hoveru */
+}
+
+/* Stil za linkove u Navbar-u */
+.navbar-link {
+  color: #fff; /* Bela boja teksta */
+  text-decoration: none;
+  font-size: 1.4rem;
+  margin-bottom: 1px; /* Dodat margin između linkova */
+  transition: color 0.3s; /* Animacija za promenu boje teksta */
+  display: flex;
+  flex-direction: column; /* Promenjeno na vertikalni layout */
+  justify-content: flex-start;
+  margin: 20px;
+  font-family: 'Teko', sans-serif;
+}
+
+/* Stil za linkove u Navbar-u na hover */
+.navbar-link:hover {
+  color: #ffd700; /* Zlatna boja na hoveru */
+}
+
+.active-link {
+  color: #ffd700; /* Zlatna boja za aktivan link */
+ 
+  text-transform: uppercase;
+}
+
+/* Prilagodite širinu da se ne preklapa sa sadržajem */
+.navbar-left {
+  width: 100%; /* Širina elementa */
+  padding: 10px; /* Dodat padding */
+}
+.hidden {
+  display: none;
+}
+
+.toggle-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+  visibility: visible;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 2;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 45px;
+  font-weight: bold;
+}
+

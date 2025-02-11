@@ -1,17 +1,51 @@
-import './Pocetna.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import classes from "./Pocetna.module.css";
+import video from "../images/lukabickeji1video.mp4";
+import instaicon from "../images/instaicon.png";
+import bickejinovivideo from "../images/bickejinovivideo.mp4";
+import undologoo from '../images/undologoo.jpg'
 
 const Pocetna = () => {
-    return (
-        <>
-        <section className='sekcija-1'>
-            <h3 className='tekst1'>- Dobro dosao na sajt!</h3>
-            <h1 className='tekst2'>Luka Bickeji</h1>
-            <h5 className='tekst3'>Pazljivo procitajte usluge prilikom zakazivanja termina. Mozete izabrati jednu ili vise usluga.</h5>
-            <button className='dugme'>ZAKAZI TERMIN</button>
-            <img className='slika1' src='https://images.unsplash.com/photo-1587909209111-5097ee578ec3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'  alt= 'React Image' />
-        </section>
-        </>
-    )
+
+  return (
+    <>
+      {/* <video
+        autoPlay
+        playsInline
+        loop
+        muted
+        disablePictureInPicture
+        controls={false}
+        className={classes["video-bg"]}
+      >
+        <source src={bickejinovivideo} type="video/mp4" />
+      </video> */}
+      <div className={classes.container}>
+      <img src={undologoo} alt="LOGO" className={classes.firstImage}/>
+        <div className={classes.info}>
+          <h1>Undo Vrbas</h1>
+          <h2>Software za zakazivanje</h2>
+          <Link to={"/Odabrirfrizera"} className={classes.button}>
+            ZAKAŽI TERMIN
+          </Link>
+          <div className={classes.instagram}>
+            <a
+              href="https://www.instagram.com/berbernica_luka_bickeji/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={instaicon}
+                alt="Instagram"
+                className={classes.instaIcon}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Pocetna;

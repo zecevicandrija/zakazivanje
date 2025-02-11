@@ -1,0 +1,148 @@
+.novi-frizer-input-radno {
+  max-width: 100%;
+  width: 40%;
+  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+   
+}
+.radno-vreme-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-direction: column;
+  
+}
+
+.novi-frizer-input-radno2 {
+min-width: 20%;
+max-width: 100%;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.radno-vreme-table {
+border-collapse: collapse;
+width: 20%;
+margin-top: 5%;
+}
+
+.radno-vreme-table th, .radno-vreme-table td {
+border: 1px solid #ddd;
+padding: 8px;
+text-align: left;
+}
+
+.radno-vreme-table th {
+background-color: #f2f2f2;
+}
+
+.neradan-checkbox {
+  margin: 20px;
+}
+
+/* Radnovreme.css */
+
+.radno-vreme-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.day-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.day-label {
+  font-weight: bold;
+  text-transform: capitalize; /* Postavljanje prvog slova svakog dana na veliko */
+}
+
+.neradan-checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.neradan-checkbox-label {
+  margin-left: 5px;
+  font-size: 12px;
+  color: gray;
+}
+
+.neradan-checkbox {
+  margin-top: 5px;
+}
+
+.time-selector {
+  margin-top: 5px;
+}
+
+.slider-container {
+  margin-top: 15px;
+}
+
+/* responsive tabela */
+
+.radno-vreme-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radno-vreme-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.radno-vreme-table th, .radno-vreme-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.radno-vreme-table th {
+  background-color: #f2f2f2;
+}
+
+/* Responsive styles for smaller screens */
+@media only screen and (max-width: 900px) {
+  .radno-vreme-table th, .radno-vreme-table td {
+    font-size: 12px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .radno-vreme-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+
+  .radno-vreme-table tr {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .radno-vreme-table td {
+    display: inline-block;
+    width: 48%; /* Postavite željenu širinu */
+    box-sizing: border-box;
+  }
+
+  .radno-vreme-table th {
+    display: inline-block;
+    width: 48%; /* Postavite istu širinu kao i td */
+    box-sizing: border-box;
+  }
+
+  /* Styles for alternating row colors (optional) */
+  .radno-vreme-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+}
