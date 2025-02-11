@@ -1,67 +1,145 @@
 /* Statistika.css */
+
+/* Animacija za pojavljivanje */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glavni kontejner */
 .statistika {
-  padding: 40px;
-}
-.calendar {
-  max-width: 85%;
-  margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
+  font-family: "Bai Jamjuree", sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-top: 50px;
 }
 
+/* Filters sekcija */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.filter-select,
+.filter-textfield {
+  min-width: 200px;
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.filter-select label {
+  font-family: "Bai Jamjuree", sans-serif;
+}
+/* Kontejner tabele */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Tabela */
 .event-table {
-  width: 80%;
+  width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-  margin: auto;
+.event-table thead {
+  background-color: #1976d2;
+  color: #fff;
 }
 
 .event-table th,
 .event-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .event-table th {
-  background-color: #f2f2f2;
+  font-size: 1rem;
 }
 
-.event-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+.event-table td {
+  font-size: 0.9rem;
 }
 
+/* Hover efekat na redove tabele */
 .event-table tbody tr:hover {
-  background-color: #ddd;
+  background-color: #f1f1f1;
+}
+
+/* Pagination stilovi */
+.pagination-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .pagination {
-  display: flex;
-  justify-content: center;
   list-style: none;
-  padding: 15px;
-  margin-top: 20px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0;
+  justify-content: center;
 }
 
-.page-item {
-  margin: 0 5px;
-}
-
-.page-link {
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #333;
+.pagination .page-item button {
+  border: none;
+  background-color: #1976d2;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: auto;
 }
 
-.page-link.active {
-  background-color: #007bff;
-  color: #fff;
-  border: 1px solid #007bff;
+.pagination .page-item.active button {
+  background-color: #ff0000;
 }
 
-.MuiTextField-root {
-  margin: 15px; /* Dodajte željeni razmak između TextField komponenti */
+.pagination .page-item button:hover {
+  background-color: #1565c0;
+}
+
+/* Prikaz ukupne zarade */
+.total-earnings {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Responsivni stilovi */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-select,
+  .filter-textfield {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .event-table th,
+  .event-table td {
+    padding: 0.5rem 0.75rem;
+  }
 }

@@ -1,107 +1,85 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import './NavBar.css'; // Make sure your styles are defined in this CSS file
-import lukabickejilogo from "../images/lukabickejilogo.jpg";
-import { getAuth, onAuthStateChanged , signOut } from '@firebase/auth'
-import undologoo from '../images/undologoo.jpg'
+import './NavBar.css';
+import { getAuth, onAuthStateChanged, signOut } from '@firebase/auth';
+import undologoo from '../images/undologoo.jpg';
 
 const Navbar = () => {
-  const [user, setUser] = useState()
-  const [error, setError] = useState()
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
   
-  //console.log("APP ", user)
-  useEffect(()=>{
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
       if (user) {
-  //        console.log(user)
-        setUser(user)
-        
+        setUser(user);
       } else {
-        setUser(null)
-        // ...
+        setUser(null);
       }
-    }, setError)
-    return () => unsubscribe()
-  },[])
+    }, setError);
+    return () => unsubscribe();
+  }, []);
   
-  
-  //console.log("Navbar ", user)
   const handleLogoutClick = () => {
-    signOut(getAuth())
+    signOut(getAuth());
   };
 
-  const [buttonColor, setButtonColor] = useState('#000');
-  const [navbarHidden, setNavbarHidden] = useState(true);
+  // Kontroler za otvaranje/zatvaranje menija (hamburger)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleNavbar = (e) => {
-    e.stopPropagation(); // Prevent event propagation
-    setNavbarHidden(!navbarHidden);
-    setButtonColor(buttonColor === '#fff' ? '#000' : '#fff');
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const closeNavbar = () => {
-    setNavbarHidden(true);
-    setButtonColor('#000');
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   useEffect(() => {
-    document.body.addEventListener('click', closeNavbar);
-
-    return () => {
-      document.body.removeEventListener('click', closeNavbar);
-    };
+    // Klik van menija zatvara mobilni meni
+    document.addEventListener('click', closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, []);
 
-  const handleNavbarClick = (e) => {
+  const handleMenuClick = (e) => {
+    // Sprečava propagaciju klika unutar menija
     e.stopPropagation();
   };
 
   return (
-    <>
-      <button className="toggle-button" onClick={toggleNavbar} style={{ color: buttonColor }}>
-        {navbarHidden ? '⋮' : '⋮'}
-      </button>
-      <div className={`navbar-target ${navbarHidden ? 'hidden' : ''}`} onClick={handleNavbarClick}>
-        <div className="navbar-left">
-          <Link to={'/PocetnaStrana'}><img src={undologoo} alt='(logo)' className='logo'/></Link>
+    <header className="navbar">
+      <div className="navbar-container">
+        {/* Logo */}
+        <div className="navbar-logo">
+          <Link to="/PocetnaStrana">
+            <img src={undologoo} alt="Logo" />
+          </Link>
         </div>
-        <div className="navbar-right">
-          <NavLink exact to={'/PocetnaStrana'} className='navbar-link' activeClassName='active-link'>Pocetna</NavLink>
-          <NavLink to={"/Onama"} className='navbar-link' activeClassName='active-link'>O nama</NavLink>
-          <NavLink to={"/Odabrirfrizera"} className='navbar-link' activeClassName='active-link'>Usluge</NavLink>
+        {/* Navigacioni linkovi */}
+        <nav className={`navbar-menu ${isMenuOpen ? 'open' : ''}`} onClick={handleMenuClick}>
+          <NavLink exact to="/PocetnaStrana" activeClassName="active-link">Pocetna</NavLink>
+          <NavLink to="/Onama" activeClassName="active-link">O nama</NavLink>
+          <NavLink to="/Odabrirfrizera" activeClassName="active-link">Usluge</NavLink>
+          {user && <NavLink to="/loginovan" activeClassName="active-link">Termini</NavLink>}
+          {user && <NavLink to="/Kategorija" activeClassName="active-link">Kategorija</NavLink>}
+          {user && <NavLink to="/pauza" activeClassName="active-link">Pauza</NavLink>}
+          {user && <NavLink to="/Statistika" activeClassName="active-link">Statistika</NavLink>}
+          {user && <NavLink to="/usluge" activeClassName="active-link">Tabela Usluge</NavLink>}
+          {user && <NavLink to="/Radnovreme" activeClassName="active-link">Radno vreme</NavLink>}
           {user && (
-            <NavLink to={'/loginovan'} className="navbar-link" activeClassName='active-link'>Termini</NavLink>
-          )}
-          {user && (
-            <NavLink to={'/Kategorija'} className="navbar-link" activeClassName='active-link'>Kategorija</NavLink>
-          )}
-          {user && (
-            <NavLink to={'/pauza'} className="navbar-link" activeClassName='active-link'>Pauza</NavLink>
-          )}
-          {user && (
-            <NavLink to={'/Statistika'} className="navbar-link" activeClassName='active-link'>
-              Statistika
-            </NavLink>
-          )}
-          {user && (
-            <NavLink to={'/usluge'} className="navbar-link" activeClassName='active-link'>
-              Tabela Usluge
-            </NavLink>
-          )}
-          {user && (
-            <NavLink to={'/Radnovreme'} className="navbar-link" activeClassName='active-link'>
-              Radno vreme
-            </NavLink>
-          )}
-
-          {user && (
-            <Link to={'/Odjava'} className="navbar-link" onClick={handleLogoutClick}>
+            <Link to="/Odjava" className="navbar-link" onClick={handleLogoutClick}>
               Izloguj se
             </Link>
           )}
-        </div>
+        </nav>
+        {/* Hamburger dugme za mobilne uređaje */}
+        <button className={`navbar-toggle ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
       </div>
-    </>
+    </header>
   );
 };
 

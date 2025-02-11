@@ -1,9 +1,11 @@
 /* Uklonite ovu liniju ako više ne želite koristiti Lato font */
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
+
 
 body {
   margin: 0;
-  font-family: 'Teko', sans-serif; /* Promenite 'Lato' u 'Teko' /
+  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' /
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll; / Dozvoli samo vertikalno skrolovanje */
@@ -11,15 +13,19 @@ body {
 }
 
 code {
-  font-family: 'Teko', sans-serif; /* Promenite 'Lato' u 'Teko' */
+  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' */
 }
 
 h1, h2, h3 {
-  font-family: 'Teko', sans-serif; /* Promenite 'Lato' u 'Teko' /
+  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' /
   / Dodajte dodatne stilizacije prema potrebi */
 }
 
+button {
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
 p {
-  font-family: 'Teko', sans-serif; /* Promenite 'Lato' u 'Teko' /
+  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' /
   / Dodajte dodatne stilizacije prema potrebi */
 }

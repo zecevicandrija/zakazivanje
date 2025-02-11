@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase/firebaseconfig";
 import "./Statistika.css";
-import { Select, TextField } from "@mui/material";
+import { FormControl, InputLabel, Select, TextField } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 
 const Statistika = () => {
@@ -20,99 +20,120 @@ const Statistika = () => {
     async function fetchData() {
       try {
         let q = collection(db, "zakazivanje");
-  
+
         if (odabraniFrizer) {
           q = query(q, where("izabraneUsluge.frizer", "==", odabraniFrizer));
         }
-  
+
         if (filterIme) {
           q = query(q, where("imeKorisnika", "==", filterIme));
         }
-  
+
         if (startDate && endDate) {
-          q = query(q, where("izabraneUsluge.datum", ">=", startDate), where("izabraneUsluge.datum", "<=", endDate));
+          q = query(
+            q,
+            where("izabraneUsluge.datum", ">=", startDate),
+            where("izabraneUsluge.datum", "<=", endDate)
+          );
         } else if (startDate) {
           q = query(q, where("izabraneUsluge.datum", ">=", startDate));
         } else if (endDate) {
           q = query(q, where("izabraneUsluge.datum", "<=", endDate));
         }
-  
-        const querySnapshot = await getDocs(q);
-  
-        const noviNiz = querySnapshot.docs.map((doc) => {
-          const pocetniDatumValue = doc.data().izabraneUsluge.pocetakTermina.value;
 
-  // Add these console.log statements to debug
-  console.log('pocetniDatumValue:', pocetniDatumValue);
-  console.log('typeof pocetniDatumValue:', typeof pocetniDatumValue);
-          let pom = doc.data().izabraneUsluge.usluge;
+        const querySnapshot = await getDocs(q);
+
+        const noviNiz = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          // Ako nije definiran, koristimo podrazumevani "00:00"
+          const pocetakTerminaValue =
+            data.izabraneUsluge.pocetakTermina &&
+            data.izabraneUsluge.pocetakTermina.value
+              ? data.izabraneUsluge.pocetakTermina.value
+              : "00:00";
+
+          let pom = data.izabraneUsluge.usluge;
           let uslugeString = "";
           let ukupnoMinuta = 0;
           Object.keys(pom).forEach((usluga) => {
             if (pom[usluga] !== false) {
-              uslugeString = uslugeString + " " + usluga;
-              ukupnoMinuta = ukupnoMinuta + Number(pom[usluga]);
+              uslugeString += " " + usluga;
+              ukupnoMinuta += Number(pom[usluga]);
             }
           });
-  
-          const datumTimestamp = doc.data().izabraneUsluge.datum;
+
+          const datumTimestamp = data.izabraneUsluge.datum;
           const seconds = datumTimestamp.seconds;
           const milliseconds = seconds * 1000;
           const pocetniDatum = new Date(milliseconds);
-          let vreme = doc.data().izabraneUsluge.pocetakTermina.value.split(":");
+          let vreme = pocetakTerminaValue.split(":");
           let sat = Number(vreme[0]);
           let min = Number(vreme[1]);
           pocetniDatum.setHours(sat, min);
           const krajnjiDatum = new Date(pocetniDatum);
           krajnjiDatum.setMinutes(pocetniDatum.getMinutes() + ukupnoMinuta);
-  
+
           return {
-            title: `Korisnik: ${doc.data().imeKorisnika}, telefon: ${doc.data().brojKorisnika}, narucene usluge ${uslugeString}, Trener: ${doc.data().izabraneUsluge.frizer} `,
+            title: `Korisnik: ${data.imeKorisnika}, telefon: ${data.brojKorisnika}, narucene usluge ${uslugeString}, Trener: ${data.izabraneUsluge.frizer}`,
             start: pocetniDatum,
             end: krajnjiDatum,
             minuti: ukupnoMinuta,
             id: doc.id,
-            imeKorisnika: doc.data().imeKorisnika,
-            brojKorisnika: doc.data().brojKorisnika,
-            frizer: doc.data().izabraneUsluge.frizer,
+            imeKorisnika: data.imeKorisnika,
+            brojKorisnika: data.brojKorisnika,
+            frizer: data.izabraneUsluge.frizer,
             usluge: uslugeString,
-            cena: doc.data().izabraneUsluge.cena,
+            // Ako nema polje cena, tretiramo kao 0
+            cena: data.izabraneUsluge.cena ? Number(data.izabraneUsluge.cena) : 0,
           };
         });
-  
+
+        // Sortiramo termine tako da najnoviji (najveći datum) budu prvi
+        noviNiz.sort((a, b) => b.start.getTime() - a.start.getTime());
+
         const novaUkupnaZarada = noviNiz.reduce(
-          (total, item) => +total + +item.cena,
+          (total, item) => total + (item.cena || 0),
           0
         );
-  
+
         setMyEvents(noviNiz);
         setUkupnaZarada(novaUkupnaZarada);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-  
+
+      // Dohvati listu frizera/trenera
       const frizeriQuerySnapshot = await getDocs(collection(db, "frizeri"));
       const frizeriData = frizeriQuerySnapshot.docs.map(
         (doc) => doc.data().frizer.ime
       );
       setFrizeriList(frizeriData);
     }
-  
+
     fetchData();
   }, [odabraniFrizer, filterIme, startDate, endDate]);
-  
+
   const filterHandler = (event) => {
     setFilterIme(event.target.value);
   };
 
-  const handleStartDateChange = (date) => {
-    console.log("handleStartDateChange:", date);
-    setStartDate(new Date(date));  // Pretvori string u objekat datuma
+  // Ako je unesena prazan string, postavi state na null
+  const handleStartDateChange = (dateString) => {
+    console.log("handleStartDateChange:", dateString);
+    if (!dateString) {
+      setStartDate(null);
+    } else {
+      setStartDate(new Date(dateString));
+    }
   };
 
-  const handleEndDateChange = (date) => {
-    console.log("handleEndDateChange:", date);
-    setEndDate(new Date(date));  // Pretvori string u objekat datuma
+  const handleEndDateChange = (dateString) => {
+    console.log("handleEndDateChange:", dateString);
+    if (!dateString) {
+      setEndDate(null);
+    } else {
+      setEndDate(new Date(dateString));
+    }
   };
 
   const totalItems = myEvents.length;
@@ -127,10 +148,7 @@ const Statistika = () => {
 
     for (let i = 1; i <= totalPages; i++) {
       pageButtons.push(
-        <li
-          key={i}
-          className={`page-item ${currentPage === i ? "active" : ""}`}
-        >
+        <li key={i} className={`page-item ${currentPage === i ? "active" : ""}`}>
           <button className="page-link" onClick={() => setCurrentPage(i)}>
             {i}
           </button>
@@ -143,51 +161,60 @@ const Statistika = () => {
 
   return (
     <div className="statistika">
-    <Select
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
-      value={odabraniFrizer}
-      label="Frizer"
-      onChange={(event) => setOdabraniFrizer(event.target.value)}
-    >
-      <MenuItem key="all" value="">
-        Svi treneri
-      </MenuItem>
-      {frizeriList.map((frizerItem) => (
-        <MenuItem key={frizerItem} value={frizerItem}>
-          {frizerItem}
-        </MenuItem>
-      ))}
-    </Select>
-    <div className="MuiTextField-root">
-      <TextField
-        value={filterIme}
-        onChange={filterHandler}
-        label="Filtriraj po imenu klijenta"
-        variant="outlined"
-      />
-    </div>
-    <div className="MuiTextField-root">
-      <TextField
-        label="Start Date"
-        type="date"
-        onChange={(event) => handleStartDateChange(event.target.value)}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </div>
-    <div className="MuiTextField-root">
-      <TextField
-        label="End Date"
-        type="date"
-        onChange={(event) => handleEndDateChange(event.target.value)}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </div>
-      <div className="calendar">
+      <div className="filters">
+        <FormControl className="filter-select" variant="outlined" sx={{ minWidth: 200 }}>
+          <InputLabel sx={{ fontFamily: "Bai Jamjuree, sans-serif" }}>Frizer</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={odabraniFrizer}
+            label="Frizer"
+            onChange={(event) => setOdabraniFrizer(event.target.value)}
+          >
+            <MenuItem key="all" value="" style={{ fontFamily: "Bai Jamjuree, sans-serif" }}>
+              Svi frizeri
+            </MenuItem>
+            {frizeriList.map((frizerItem) => (
+              <MenuItem key={frizerItem} value={frizerItem} style={{ fontFamily: "Bai Jamjuree, sans-serif" }}>
+                {frizerItem}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        
+        <TextField
+          value={filterIme}
+          onChange={filterHandler}
+          label="Filtriraj po imenu klijenta"
+          variant="outlined"
+          className="filter-textfield"
+          InputLabelProps={{
+            style: { fontFamily: "Bai Jamjuree, sans-serif" },
+          }}
+        />
+        <TextField
+          label="Start Date"
+          type="date"
+          onChange={(event) => handleStartDateChange(event.target.value)}
+          InputLabelProps={{
+            shrink: true,
+            style: { fontFamily: "Bai Jamjuree, sans-serif" },
+          }}
+          className="filter-textfield"
+        />
+        <TextField
+          label="End Date"
+          type="date"
+          onChange={(event) => handleEndDateChange(event.target.value)}
+          InputLabelProps={{
+            shrink: true,
+            style: { fontFamily: "Bai Jamjuree, sans-serif" },
+          }}
+          className="filter-textfield"
+        />
+      </div>
+
+      <div className="table-container">
         <table className="event-table">
           <thead>
             <tr>
@@ -223,15 +250,14 @@ const Statistika = () => {
             })}
           </tbody>
         </table>
+      </div>
 
-        <nav>
-          <ul className="pagination">{renderPaginationButtons()}</ul>
-        </nav>
+      <nav className="pagination-container">
+        <ul className="pagination">{renderPaginationButtons()}</ul>
+      </nav>
 
-        <div>
-          <b>Ukupna zarada: {ukupnaZarada}</b>
-        </div>
-
+      <div className="total-earnings">
+        <b>Ukupna zarada: {ukupnaZarada}</b>
       </div>
     </div>
   );

@@ -70,7 +70,7 @@ q = query(
           const krajnjiDatum = new Date(pocetniDatum);
           krajnjiDatum.setMinutes(pocetniDatum.getMinutes() + ukupnoMinuta);
           let obj = {
-            title: `Korisnik: ${item.imeKorisnika}, telefon: ${item.brojKorisnika}, narucene usluge ${uslugeString}, frizer ${item.izabraneUsluge.frizer} `,
+            title: `Korisnik: ${item.imeKorisnika}, telefon: ${item.brojKorisnika}, narucene usluge: ${uslugeString}, frizer ${item.izabraneUsluge.frizer} `,
             start: pocetniDatum,
             end: krajnjiDatum,
             minuti: ukupnoMinuta,

@@ -89,27 +89,27 @@ const izabranFrizerHandler = (event) => {
 
 
   return (
-    <>
+    <div className="odabirfrizerasve">
 
-      {isLoggedIn && <Button variant="contained" className="dodajfrizeradugme" onClick={() => { history.push("/Novifrizer"); }}>Dodaj Centar</Button>}
-      <div className="centriranje-div">
+      {isLoggedIn && <Button variant="contained" className="dodajfrizeradugmeodabir" onClick={() => { history.push("/Novifrizer"); }}>Dodaj Centar</Button>}
+      <div className="centriranje-div1odabir">
       {fbFrizer.map((item) => {
        
 
         return (
           
-          <div className="kartica-container" key={item.id}>
-            <label className="kartica">
-              <p className="ime-usluge1">{item.frizer.ime}</p>
-              <img className="slika-frizera" src={item.frizer.slika} alt="slika5 "/>
+          <div className="kartica-container1odabir" key={item.id}>
+            <label className="karticaodabir">
+              <p className="ime-usluge1odabir">{item.frizer.ime}</p>
+              <img className="slika-frizeraodabir" src={item.frizer.slika} alt="slika5 "/>
               <input
                 type="checkbox"
                 checked={frizer === item.frizer.ime} // Change 'item.ime' to 'item.frizer.ime'
                 name={item.frizer.ime} // Change 'item.ime' to 'item.frizer.ime'
                 onChange={izabranFrizerHandler}
-                className="cekbox"
+                className="cekboxodabir"
               />
-              <div className="kartica-dugmad">
+              <div className="kartica-dugmadodabir">
               {isLoggedIn && <Button onClick={() => handleEdit(item)} variant="contained">Edit</Button>}
               {isLoggedIn && <Button onClick={() => rejectEvent(item)} variant="contained">Delete</Button>}
               </div>
@@ -119,12 +119,12 @@ const izabranFrizerHandler = (event) => {
       })}
       </div>
 
-      <div className="dugme1-container">
+      <div className="dugme1-containerodabir">
       {frizer !== null && ( // Uslovni prikaz za dugme "Dalje"
         <button
           variant="contained"
           onClick={daljeHandler}
-          className="dugme1"
+          className="dugme1odabir"
           // Onemogućavanje dugmeta ako frizer nije izabran
           disabled={frizer === null}
         >
@@ -132,31 +132,31 @@ const izabranFrizerHandler = (event) => {
         </button>
       )}
       </div>
-      <Modal show={showModal} onHide={handleCloseModal} className="modal">
+      <Modal show={showModal} onHide={handleCloseModal} className="modalodabir">
         <Modal.Header closeButton>
           <Modal.Title>Upozorenje</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="modal-question">
+        <Modal.Body className="modal-questionodabir">
           Da li ste sigurni da želite da obrišete centar?
         </Modal.Body>
         <Modal.Footer>
           <Button
             variant="secondary"
             onClick={handleCloseModal}
-            className="modal-button modal-button-cancel"
+            className="modal-button modal-button-cancelodabir"
           >
             Otkaži
           </Button>
           <Button
             variant="primary"
             onClick={handleConfirmDelete}
-            className="modal-button modal-button-delete"
+            className="modal-button modal-button-deleteodabir"
           >
             Obriši
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 

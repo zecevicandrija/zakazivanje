@@ -1,32 +1,158 @@
-.bigcalendar {
-  background-color: white;
-  margin-top: 50px;
-  height: 500px;
-  
+/* Registrovanikorisnik.css */
+
+/* Animacije */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  .kalendarroditelj {  display: flex;
-    justify-content: center;}
-  .kalendar{
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glavni kontejner */
+.bigcalendar {
+  padding: 2rem;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+/* Stilizacija MUI Select-a (ako se koristi u okviru ovog kontejnera) */
+.bigcalendar .MuiSelect-root {
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+/* Kontejner oko kalendara */
+.kalendarroditelj {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Stilizacija kalendara (react-big-calendar) */
+.kalendar {
+  width: 100%;
+  height: 500px;
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+/* Prilagođavanje visine kalendara za manje ekrane */
+@media (max-width: 600px) {
+  .kalendar {
+    height: 400px;
+  }
+}
+
+/* Event komponenta (ako se primenjuje na elemente unutar kalendara) */
+.rbc-event {
+  cursor: pointer;
+}
+
+/* Ako je potrebno dodatno stilizovati sadržaj događaja */
+.rbc-event-content {
+  padding: 0.5rem;
+}
+
+/* Dugmad unutar eventa */
+.calendar-button {
+  margin: 0.2rem;
+  padding: 0.3rem 0.6rem;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.calendar-button:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+/* Modal stilovi */
+.modal .modal-content {
+  border-radius: 8px;
+  animation: slideDown 0.4s ease-out;
+}
+
+.modal-question {
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.modal-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  border: none;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.modal-button-cancel {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.modal-button-cancel:hover {
+  background-color: #d32f2f;
+}
+
+.modal-button-delete {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.modal-button-delete:hover {
+  background-color: #43a047;
+}
+
+/* Dodatna responzivnost */
+@media (max-width: 768px) {
+  .bigcalendar {
+    padding: 1rem;
+  }
   
-  width: 85%;
+  .kalendarroditelj {
+    margin-top: 1rem;
+  }
+  
+  .modal-question {
+    font-size: 0.9rem;
   }
   
   .calendar-button {
-      background-color: red; /* Crvena boja pozadine */
-      color: white; /* Bela boja teksta */
-      border: none; /* Bez ivica oko dugmeta */
-      padding: 8px 12px; /* Razmak unutar dugmeta */
-      border-radius: 4px; /* Zaobljeni uglovi */
-      cursor: pointer; /* Pokazivač pri hoveru iznad dugmeta */
-      margin:5px;
-    }
-
-    .calendar-button:nth-child(2) {
-      background-color: blue;
-    }
-    
-    /* Promena boje teksta kada je dugme deaktivirano */
-    .calendar-button:disabled {
-      background-color: gray; /* Siva boja pozadine */
-      cursor: not-allowed; /* Zabranjeni pokazivač pri hoveru iznad dugmeta */
-    }
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}

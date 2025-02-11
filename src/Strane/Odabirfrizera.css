@@ -1,156 +1,195 @@
-/* Osnovni stilovi */
-.kartica-container {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin: 4vh;
+/* OdabirFrizera.css - Stilovi za kartice frizera */
+
+/* Animacije */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.centriranje-div { 
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin: 5vh;
+/* Glavni kontejner stranice */
+.odabirfrizerasve {
+  padding: 2rem;
+  background-color: #f5f5f5;
+  min-height: 100vh;
 }
 
-.kartica {
-  width: 300px;
-  height: auto;
-  background-color: #ffffff;
+/* Dugme za dodavanje centra (admin opcija) */
+.dodajfrizeradugmeodabir {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dodajfrizeradugmeodabir:hover {
+  background-color: #43a047;
+}
+
+/* Kontejner za kartice frizera - grid raspored */
+.centriranje-div1odabir {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Svaka kartica */
+.kartica-container1odabir {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.kartica-container1odabir:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Sadržaj kartice */
+.karticaodabir {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  transition: 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  position: relative;
 }
 
-.kartica:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px);
-}
-
-.ime-usluge1 {
-  font-size: 1.5rem;
-  font-weight: 700;
+/* Ime frizera */
+.ime-usluge1odabir {
+  font-size: 1.2rem;
+  font-weight: 600;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
 }
 
-.slika-frizera {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  border-radius: 50%;
-}
-
-.kartica-dugmad {
-  display: flex;
-  justify-content: space-between;
+/* Slika frizera */
+.slika-frizeraodabir {
   width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.kartica-container1odabir:hover .slika-frizeraodabir {
+  transform: scale(1.05);
+}
+
+/* Stilizacija checkbox-a */
+.cekboxodabir {
+  margin-top: 1rem;
+  transform: scale(1.3);
+  accent-color: #4caf50;
+  cursor: pointer;
+}
+
+/* Kontejner za dugmad (Edit / Delete) unutar kartice */
+.kartica-dugmadodabir {
+  display: flex;
+  gap: 0.5rem;
   margin-top: 1rem;
 }
 
-.kartica-dugmad > button:first-child {
-  margin-right: 0.5rem;
-  background-color: #007bff;
-  color: white;
+/* Stil za dugmad unutar kartice - eventualno se mogu dodatno prilagoditi MUI stilovima */
+.kartica-dugmadodabir button {
+  font-size: 0.8rem;
 }
 
-.kartica-dugmad > button:last-child {
-  background-color: #dc3545;
-  color: white;
-}
-
-.dodajfrizeradugme {
-  margin: 2rem;
-  background-color: #28a745;
-  color: white;
-}
-
-.dodajfrizeradugme:hover {
-  background-color: #218838;
-  color: white;
-}
-
-.dugme1-container {
-  display: flex;
-  justify-content: center;
+/* Kontejner za dugme "Dalje" */
+.dugme1-containerodabir {
+  text-align: center;
   margin-top: 2rem;
 }
 
-.dugme1 {
-  padding: 0.5rem 2rem;
-  background-color: #ffca42;
+/* Dugme "Dalje" */
+.dugme1odabir {
+  background-color: #1976d2;
+  color: #fff;
   border: none;
-  border-radius: 0.5rem;
-  font-size: 1.2rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.dugme1:hover {
-  background-color: #0056b3;
-  color: white;
+.dugme1odabir:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-.modal-question {
-  font-size: 1.2rem;
+.dugme1odabir:hover:not(:disabled) {
+  background-color: #1565c0;
+}
+
+/* Stilovi za Modal - prilagođavanje bootstrap modala */
+.modalodabir .modal-content {
+  border-radius: 8px;
+  border: none;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.modal-questionodabir {
+  font-size: 1rem;
+  text-align: center;
 }
 
 .modal-button {
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  min-width: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.modal-button-cancel {
-  background-color: #6c757d;
-  color: white;
+.modal-button-cancelodabir {
+  background-color: #f44336;
+  color: #fff;
 }
 
-.modal-button-delete {
-  background-color: #dc3545;
-  color: white;
+.modal-button-cancelodabir:hover {
+  background-color: #d32f2f;
 }
 
-.cekbox {
-  margin-top: 1rem;
-  width: 20px;
-  height: 20px;
+.modal-button-deleteodabir {
+  background-color: #4caf50;
+  color: #fff;
 }
 
-/* Responsive styles */
-@media screen and (max-width: 480px) {
-  .kartica {
-    width: 90%;
-    margin-bottom: 1rem;
+.modal-button-deleteodabir:hover {
+  background-color: #43a047;
+}
+
+/* Responsivni stilovi za mobilne uređaje */
+@media (max-width: 600px) {
+  .centriranje-div1odabir {
+    grid-template-columns: 1fr;
   }
-
-  .dugme1 {
-    margin-bottom: 50px;
+  
+  .kartica-container1odabir {
+    margin: 0 auto;
   }
-}
-
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  .kartica {
-    width: 45%;
-    margin-bottom: 1rem;
-  }
-}
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .kartica {
-    width: 30%;
-    margin-bottom: 1rem;
-  }
-}
-
-@media screen and (min-width: 1025px) {
-  .kartica {
-    width: 20%;
-    margin-bottom: 1rem;
+  
+  .slika-frizeraodabir {
+    max-height: 150px;
   }
 }

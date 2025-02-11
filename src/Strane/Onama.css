@@ -1,240 +1,247 @@
-body {
-  margin: 5rem;
-}
+/*  
+  Stilovi isključivo za ovu komponentu - ne utiču na ceo projekat.
+  Koristi se font "Bai Jamjuree" i animacije pri učitavanju.
+*/
 
-.barberpozadina {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ovaj stil će omogućiti da video pokriva celu pozadinu */
-  z-index: -1;
-  filter: blur(6px); 
-}
-
-.barberwallpaper {
-  max-width: 100%;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-h1.naslov {
-  font-family: 'Teko', sans-serif;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  display: flex;
-  justify-content: space-between;
+.onama {
+  font-family: "Bai Jamjuree", sans-serif;
+  animation: fadeInUp 0.8s ease-out;
   padding: 20px;
-  box-sizing: border-box;
 }
 
-.content img {
-  max-width: 20%;
-  border-radius: 8px;
+/* Animacija celog sadržaja */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.text {
-  max-width: 50%;
-  padding: 10px;
-  box-sizing: border-box;
+/* Pozadinska slika sa zum efektom */
+.onama__pozadina {
+  position: relative;
+  overflow: hidden;
 }
 
-.text h1 {
-  color: #f08e0f;
+.onama__wallpaper {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: brightness(0.7);
+  animation: zoomIn 8s ease-out forwards;
 }
 
-.reverse {
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* Naslov stranice */
+.onama__naslov {
+  text-align: center;
+  margin-top: -60px; /* prilagodi u zavisnosti od željenog preklapanja */
+  color: #fff;
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 1;
+  animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glavni kontejner za sadržaj */
+.onama__container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Sekcije sa tekstom i slikom */
+.onama__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0;
+  opacity: 0;
+  animation: slideIn 1s forwards;
+}
+
+.onama__content:nth-child(odd) {
+  animation-delay: 0.3s;
+}
+.onama__content:nth-child(even) {
+  animation-delay: 0.5s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reverzija rasporeda u drugoj sekciji */
+.onama__content--reverse {
   flex-direction: row-reverse;
 }
 
-
-
-.informacije {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  justify-content: space-between;
+/* Tekstualni deo */
+.onama__text {
+  flex: 1;
+  padding: 20px;
 }
 
-.info-box {
+.onama__text h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.onama__text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Stil slike unutar sekcije */
+.onama__img {
+  flex: 1;
+  max-width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  animation: fadeIn 1.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Informativni boxovi */
+.onama__informacije {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 40px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  animation: fadeIn 1s ease-out;
+}
+
+.onama__info-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  margin: auto;
+  padding: 10px 20px;
+  min-width: 150px;
+  text-align: center;
 }
 
-.info-icon {
-  font-size: 35px;
-  font-weight: bold;
-  color: #f08e0f;
-  font-family: 'Teko', sans-serif;
+.onama__info-icon {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #f39c12;
+  margin-bottom: 10px;
 }
 
-.info-text {
-  font-size: 22px;
-  color: black;
-  font-family: 'Teko', sans-serif;
-  text-transform: uppercase;
+.onama__info-text {
+  font-size: 1rem;
+  color: #333;
 }
 
-.vertical-line {
-  width: 2px;
-  height: 80px;
-  background-color: #f08e0f;
-  margin: 0 20px;
+/* Vertikalna linija između boxova */
+.onama__vertical-line {
+  width: 1px;
+  height: 50px;
+  background-color: #ccc;
+  margin: 0 10px;
 }
 
-.content img,
-.guglmapa {
-  max-width: 60%;
-  border-radius: 8px;
-  border: 2px solid #f08e0f;
+/* Stil za Google map iframe */
+.onama__guglmapa {
+  width: 100%;
+  max-width: 800px;
+  height: 250px;
+  border: none;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 20px;
+  animation: fadeIn 1s ease-out;
 }
 
-.text,
-.guglmapa {
-  max-width: 100%;
-  box-sizing: border-box;
+/* Kontakt i lokacija info */
+.onama__lokacija-info {
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 40px;
 }
 
-.text h1,
-.guglmapa {
-  color: #f08e0f;
-  margin-bottom: 5px;
+.onama__lokacija-info p {
+  margin: 10px 0;
 }
 
-.sajtradili {
- 
-  border: 2px solid #000; /* Crveni okvir */
-  color: #000;
-  padding: 10px; /* Dodajte padding prema potrebi */
-  display: inline-block; /* Postavite da se prikaže kao blok unutar teksta */
-  border-radius: 5px; /* Dodajte zaobljenje ivica ako želite */
-  margin-top: 1px;
+.onama__lokacija-info a {
+  color: #f39c12;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.naslov {
-  font-family: 'Teko', sans-serif;
+.onama__lokacija-info a:hover {
+  color: #d97c0d;
 }
 
-
-@media screen and (max-width: 768px) {
-  body {
-    margin: 1.9rem; 
-  }
-  .content {
+/* Responsivni stilovi */
+@media (max-width: 768px) {
+  .onama__content {
     flex-direction: column;
-  }
-
-  .content img {
-    max-width: 100%;
-    margin-bottom: 1%;
-  }
-
-  .text {
-    max-width: 100%;
-  }
-
-  .text h1 {
-    font-size: 30px; /* Prilagodite veličinu teksta prema potrebi */
-  }
-
-  .reverse {
-    flex-direction: column-reverse;
-  }
-
-  .info-box {
-    width: 100%; /* Postavljamo širinu na 50% kako bi bile dve kolone u svakom redu */
-    padding: 10px;
     text-align: center;
   }
-
-  .vertical-line {
-    width: 100%; /* Postavljamo širinu na 100% kako bi bila horizontalna linija */
-    height: 2px; /* Postavljamo visinu na 2px (ili drugu vrednost po potrebi) */
-    margin: 10px 0; /* Dodajemo razmak iznad i ispod linije */
-  }
-
-
-
-  .informacije {
+  
+  .onama__content--reverse {
     flex-direction: column;
-    align-items: center;
   }
-
-  .lokacija-info p {
-    font-size: 22px; /* Prilagodite veličinu teksta prema potrebi */
-    backdrop-filter: blur(5px);
-  }
-
-  .text p {
-    font-size: 19px; /* Prilagodite veličinu teksta prema potrebi */
-    backdrop-filter: blur(5px);
-  }
-}
-
-@media screen and (min-width: 1400px)  {
-
-  body {
-    margin: 5rem;
-  }
-  .container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .content img,
-  .reverse img {
-    max-width: 60%;
-  }
-
-  .text {
-    max-width: 40%;
-  }
-  .text p {
-    font-size: 19px; /* Prilagodite veličinu teksta prema potrebi */
-    backdrop-filter: blur(5px);
-  }
-
-
-  .lokacija-info p {
-    font-size: 24px;
-    backdrop-filter: blur(5px);
-  }
-
-  .info-box {
-    width: 10%;
+  
+  .onama__text,
+  .onama__img {
     padding: 10px;
-    text-align: center;
-  }
-
-  .vertical-line {
-    width: 2px;
-    height: 80px;
-    background-color: #f08e0f;
     margin: 0;
   }
-
-  .guglmapa {
-    max-width: 60%;
-    margin-top: 20px;
+  
+  .onama__informacije {
+    flex-direction: column;
+  }
+  
+  .onama__vertical-line {
+    display: none;
   }
 }
-
-/* @media screen and (max-width: 1300px) and (min-width: 769px)  {
-  .content img,
-  .reverse img {
-    width: 60%;
-    
-
-  }
-} */
