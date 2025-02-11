@@ -1,7 +1,6 @@
 import React from "react";
 import "./Onama.css"; 
 import wallpaper3 from "../images/wallpaper3.webp";
-import bickejislika from "../images/bickejislika.jpg"
 import lukaslika from "../images/lukaslika.jpg";
 
 const Onama = () => {
@@ -21,7 +20,7 @@ const Onama = () => {
           <h1>SVIMA VAMA</h1>
           <p>Priča porodice Bičkeji kakvu svi sada poznajete počinje u Erdeviku 21. marta 1939. rođenjem Pavla, vama starijima poznatijeg pod imenom Paja berber. Pavle je 1952. godine kao 13-godišnji dečak izrazio želju za učenjem zanata tada poznatom vrbaskom berberu Vladi Gajdošu. Zatim se 1962. godine vraća u Vrbas kao glavni majstor berbernice u hotelu "BAČKA". Deset godina kasnije 1972. otvara svoju berbernicu - Berberski salon "Kod Paje"</p>
         </div>
-        <img src={bickejislika} alt="Prva slika" />
+        <img src={''} alt="Prva slika" />
       </div>
       <div className="content reverse">
         <img src={lukaslika} alt="Druga slika" />
