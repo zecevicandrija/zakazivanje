@@ -19,7 +19,14 @@ const Detaljitermina = () => {
 
   const frizerValue = izabraneUsluge.frizer;
   const datumValue = izabraneUsluge.datum;
-  const formatiranDatum = datumValue.toDateString();
+  const formatiranDatum = new Intl.DateTimeFormat('sr-Latn-RS', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Europe/Belgrade',
+    localeMatcher: "lookup"
+  }).format(datumValue);
+  
   //const trajanjeValue = izabraneUsluge.usluge.name;
   const odabraneUsluge = izabraneUsluge.usluge
   //console.log('korisnik je odabrao:', odabraneUsluge)

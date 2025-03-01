@@ -11,7 +11,7 @@ import { useState } from "react";
   //import BackButton from "./Dugmenazad";
   import Modal from "react-bootstrap/Modal";
   import Button from "react-bootstrap/Button";
-
+import BackButton from "./Dugmenazad";
   
 
   const Termini = () => {
@@ -206,6 +206,7 @@ return (
       <img src={pozadina5} className="terminipozadina2" alt="pozadina"/>
       </div> */}
     <div className="big-container">
+      <BackButton />
 <div className="small-container">
         <h1 className="terminitekst">Termini:</h1>
         <p className="terminipritisnite">Pritisnite na dugme termina koji želite odabrati.</p>

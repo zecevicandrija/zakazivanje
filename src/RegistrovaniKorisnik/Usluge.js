@@ -92,26 +92,28 @@ const Usluga = () => {
   return (
     <div>
       <h2 className="tabelanaslov">Tabela Usluga</h2>
+      <div className="selectuslugeee">
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={selectedFrizer}
         label="Frizer"
         onChange={(event) => setSelectedFrizer(event.target.value)}
+        style={{ fontFamily: '"Bai Jamjuree", sans-serif' }}
       >
-        <MenuItem key="all" value="">
+        <MenuItem key="all" value="" style={{ fontFamily: '"Bai Jamjuree", sans-serif' }}>
           Svi frizeri
         </MenuItem>
         {frizeriList.map((frizerItem) => (
-          <MenuItem key={frizerItem} value={frizerItem}>
+          <MenuItem key={frizerItem} value={frizerItem} style={{ fontFamily: '"Bai Jamjuree", sans-serif' }}>
             {frizerItem}
           </MenuItem>
         ))}
       </Select>
-
+      </div>
       <div className="dodajuslugucontainer">
         <Button variant="contained" onClick={() => history.push("/Novausluga")}>
-          dodaj uslugu
+          Dodaj uslugu
         </Button>
       </div>
 
@@ -129,11 +131,11 @@ const Usluga = () => {
               <p>{item.frizer}</p>
               <img src={item.slika} alt="slika5" className="slika1" />
               <div className="uslugedugmad">
-              <Button onClick={() => handleEdit(item)} variant="contained" className="logged-in-button">
-                Edit
+              <Button onClick={() => handleEdit(item)} variant="contained" className="logged-in-button" style={{ fontFamily: '"Bai Jamjuree", sans-serif' }} >
+                Izmeni
               </Button>
-              <Button onClick={() => rejectEvent(item)} variant="contained" className="logged-in-button">
-                Delete
+              <Button onClick={() => rejectEvent(item)} variant="contained" className="logged-in-button" style={{ fontFamily: '"Bai Jamjuree", sans-serif' }} >
+                Obriši
               </Button>
               </div>
             </div>

@@ -90,6 +90,7 @@ const Statistika = () => {
 
         // Sortiramo termine tako da najnoviji (najveći datum) budu prvi
         noviNiz.sort((a, b) => b.start.getTime() - a.start.getTime());
+        console.log("Sorted events:", noviNiz);
 
         const novaUkupnaZarada = noviNiz.reduce(
           (total, item) => total + (item.cena || 0),

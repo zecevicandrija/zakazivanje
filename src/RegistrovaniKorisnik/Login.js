@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import classes from './Login.module.css';
-import wallpaper3 from "../images/wallpaper3.webp";
 import { useHistory } from "react-router-dom";
 
 
@@ -54,7 +53,7 @@ const Login = () => {
       <main>
         <section className={classes.login}>
         <div className="barberpozadina">
-      <img src={wallpaper3} className="barberwallpaper" alt="pozadina"/>
+      <img src={''} className="barberwallpaper" alt="pozadina"/>
       </div>
           <div>
             <p>Uloguj se</p>

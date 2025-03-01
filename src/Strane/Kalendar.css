@@ -1,8 +1,5 @@
 /* styles.css ili u istom fajlu gde je JSX */
-.my-calendar-container {
-    font-family: 'Roboto', sans-serif; /* Koristi Material-UI font ako je dostupan */
-    
-  }
+
   
   .my-calendar {
     width: 300px; /* Prilagodite širinu kalendaru prema potrebi */
@@ -20,9 +17,8 @@
   }
 
   .react-calendar__month-view .react-calendar__month-view__weekdays abbr {
-    font-family: 'Teko', sans-serif;
     text-transform: uppercase;
-    font-size: 21px;
+    font-size: 14px;
     text-decoration: none;
 
   }

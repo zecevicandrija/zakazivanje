@@ -1,158 +1,403 @@
 /* Registrovanikorisnik.css */
-
-/* Animacije */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Glavni kontejner */
 .bigcalendar {
-  padding: 2rem;
-  background-color: #f0f2f5;
-  min-height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-}
-
-/* Stilizacija MUI Select-a (ako se koristi u okviru ovog kontejnera) */
-.bigcalendar .MuiSelect-root {
-  background-color: #fff;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-}
-
-/* Kontejner oko kalendara */
-.kalendarroditelj {
   width: 100%;
   max-width: 1200px;
-  margin-top: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 100px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.frizercontain {
+  margin: auto;
+  width: 100%;
+}
+
+.frizer-select {
+  width: 100%;
+  max-width: 250px;
+}
+
+.view-selector {
+  display: flex;
+  gap: 5px;
+}
+
+.view-button {
+  padding: 8px 15px;
+  border: 1px solid #e1e1e1;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-button.active {
+  background-color: #4285f4;
+  color: white;
+  border-color: #4285f4;
+}
+
+.kalendarroditelj {
+  position: relative;
+  height: 650px;
+  margin-top: 20px;
+}
+
+/* Stilizacija React Big Calendar */
+.kalendar {
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Header kalendara */
+.kalendar .rbc-toolbar {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kalendar .rbc-btn-group {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.kalendar .rbc-toolbar button {
+  color: #555;
   background-color: #fff;
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Stilizacija kalendara (react-big-calendar) */
-.kalendar {
-  width: 100%;
-  height: 500px;
-  font-family: "Bai Jamjuree", sans-serif;
-}
-
-/* Prilagođavanje visine kalendara za manje ekrane */
-@media (max-width: 600px) {
-  .kalendar {
-    height: 400px;
-  }
-}
-
-/* Event komponenta (ako se primenjuje na elemente unutar kalendara) */
-.rbc-event {
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Ako je potrebno dodatno stilizovati sadržaj događaja */
-.rbc-event-content {
-  padding: 0.5rem;
+.kalendar .rbc-toolbar button:hover {
+  background-color: #f0f2f5;
 }
 
-/* Dugmad unutar eventa */
-.calendar-button {
-  margin: 0.2rem;
-  padding: 0.3rem 0.6rem;
-  background-color: #1976d2;
+.kalendar .rbc-toolbar button.rbc-active {
+  background-color: #4285f4;
+  color: white;
+  border-color: #4285f4;
+}
+
+/* Dani u nedelji */
+.kalendar .rbc-header {
+  padding: 12px 0;
+  font-weight: 600;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+/* Ćelije kalendara */
+.kalendar .rbc-month-view,
+.kalendar .rbc-time-view {
+  border: 1px solid #e1e1e1;
+  border-radius: 0 0 8px 8px;
+}
+
+.kalendar .rbc-day-bg {
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.kalendar .rbc-day-bg:hover {
+  background-color: #f8f9fa;
+}
+
+.kalendar .rbc-off-range-bg {
+  background-color: #f8f9fa;
+}
+
+.kalendar .rbc-today {
+  background-color: rgba(66, 133, 244, 0.1);
+}
+
+/* Događaji */
+.kalendar .rbc-event {
+  background-color: #4285f4;
+  border-radius: 5px;
   color: #fff;
+  padding: 5px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.kalendar .rbc-event-content {
+  padding: 4px;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.kalendar .rbc-event-label {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+/* Custom komponenta za događaje */
+.event-desktop, .event-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.event-desktop strong,
+.event-mobile strong {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.event-usluge {
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.event-actions {
+  display: flex;
+  gap: 5px;
+  margin-top: 3px;
+}
+
+.calendar-button {
+  background-color: #fff;
+  color: #4285f4;
   border: none;
   border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
-  font-size: 0.8rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .calendar-button:hover {
-  background-color: #1565c0;
-  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Modal stilovi */
+/* In Registrovanikorisnik.css */
+.custom-agenda-time {
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.custom-agenda-time .usluge {
+  font-size: 0.8em;
+  color: black;
+  white-space: normal;
+  text-transform: capitalize;
+}
+
+.rbc-agenda-time-cell {
+  width: 150px; /* Adjust based on content */
+  vertical-align: top;
+}
+
+/* Copy success toast */
+.copy-success-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Modal */
 .modal .modal-content {
-  border-radius: 8px;
-  animation: slideDown 0.4s ease-out;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.modal-question {
-  font-size: 1rem;
-  text-align: center;
-  padding: 1rem;
+.modal .modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 15px 20px;
+}
+
+.modal .modal-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.modal .modal-body {
+  padding: 20px;
+  font-size: 16px;
+}
+
+.modal .modal-footer {
+  border-top: 1px solid #e1e1e1;
+  padding: 15px 20px;
 }
 
 .modal-button {
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
-  border: none;
-  margin: 0 0.5rem;
-  cursor: pointer;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .modal-button-cancel {
-  background-color: #f44336;
-  color: #fff;
-}
-
-.modal-button-cancel:hover {
-  background-color: #d32f2f;
+  background-color: #f2f2f2;
+  color: #555;
+  border: 1px solid #e1e1e1;
 }
 
 .modal-button-delete {
-  background-color: #4caf50;
-  color: #fff;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.modal-button:hover {
+  transform: translateY(-1px);
+}
+
+.modal-button-cancel:hover {
+  background-color: #eaeaea;
 }
 
 .modal-button-delete:hover {
-  background-color: #43a047;
+  background-color: #c82333;
 }
 
-/* Dodatna responzivnost */
+/* Responzivnost */
 @media (max-width: 768px) {
   .bigcalendar {
-    padding: 1rem;
+    padding: 10px;
   }
   
   .kalendarroditelj {
-    margin-top: 1rem;
+    height: 550px;
   }
   
-  .modal-question {
-    font-size: 0.9rem;
+.frizercontain {
+  width: 70%;
+}
+  .kalendar .rbc-toolbar {
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .kalendar .rbc-toolbar-label {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  
+  .kalendar .rbc-header {
+    padding: 8px 5px;
+    font-size: 12px;
+  }
+  
+  .kalendar .rbc-event {
+    font-size: 11px;
+    padding: 3px 5px;
+  }
+  
+  .kalendar .rbc-agenda-view table.rbc-agenda-table {
+    font-size: 12px;
   }
   
   .calendar-button {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
+    padding: 2px 5px;
+    font-size: 10px;
+    margin-top: 2px;
+  }
+  
+  /* Poboljšanja za mobilni prikaz */
+  .event-desktop strong,
+  .event-mobile strong {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    font-size: 11px;
+  }
+
+  /* Prikaz dnevnog pogleda na malim ekranima */
+  .kalendar .rbc-time-content {
+    font-size: 12px;
+  }
+  
+  .kalendar .rbc-time-header-content {
+    font-size: 12px;
+  }
+  
+  /* Manja veličina za selectbox na mobilnim uređajima */
+  .frizer-select {
+    max-width: 100%;
+    font-size: 14px;
+  }
+}
+
+/* Poboljšanja za mobilnu verziju */
+@media (max-width: 480px) {
+  .kalendarroditelj {
+    height: 500px;
+  }
+  
+  .kalendar .rbc-toolbar {
+    gap: 5px;
+  }
+  
+  .kalendar .rbc-toolbar button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .kalendar .rbc-btn-group {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Poboljšanje čitljivosti događaja na malim ekranima */
+  .kalendar .rbc-event-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Agenda prikaz za mobilne */
+  .kalendar .rbc-agenda-view {
+    font-size: 12px;
   }
 }

@@ -1,31 +1,41 @@
-/* Uklonite ovu liniju ako više ne želite koristiti Lato font */
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+/* Uvoz Bai Jamjuree fonta */
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
 
+/* Postavljanje fonta na root nivo */
+:root {
+  --font-family: "Bai Jamjuree", sans-serif;
+}
+
+/* Globalni reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bai Jamjuree", sans-serif; /* Postavljanje fonta globalno na sve elemente */
+}
 
 body {
   margin: 0;
-  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' /
+  font-family: "Bai Jamjuree", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: scroll; / Dozvoli samo vertikalno skrolovanje */
+  overflow-y: scroll; /* Dozvoli samo vertikalno skrolovanje */
   overflow-x: hidden;
 }
 
-code {
-  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' */
-}
-
-h1, h2, h3 {
-  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' /
-  / Dodajte dodatne stilizacije prema potrebi */
-}
-
-button {
+/* Eksplicitno postavljanje fonta na sve elemente koji bi mogli imati podrazumevane fontove */
+h1, h2, h3, h4, h5, h6,
+p, span, a, button, input, textarea, select, option,
+li, ol, ul, 
+div, section, article, nav, footer, header, aside, main,
+table, th, td {
   font-family: "Bai Jamjuree", sans-serif;
 }
 
-p {
-  font-family: "Bai Jamjuree", sans-serif; /* Promenite 'Lato' u 'Teko' /
-  / Dodajte dodatne stilizacije prema potrebi */
+code {
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+input, button, textarea, select {
+  font-family: "Bai Jamjuree", sans-serif;
 }
