@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { db } from "../firebase/firebaseconfig";
@@ -16,6 +16,10 @@ const Detaljitermina = () => {
  // console.log(podaci)
   //console.log("izabrane usluge:", izabraneUsluge);
   const pocetakTerminaValue = izabraneUsluge.pocetakTermina.value; //.value
+
+  const [showModalDetalji, setShowModalDetalji] = useState(false);
+const [modalMessageDetalji, setModalMessageDetalji] = useState("");
+const [isSuccessDetalji, setIsSuccessDetalji] = useState(false);
 
   const frizerValue = izabraneUsluge.frizer;
   const datumValue = izabraneUsluge.datum;
@@ -61,7 +65,6 @@ const Detaljitermina = () => {
   
 
   const handleZakazi = async () => {
-    history.push('/PocetnaStrana')
     try
     { 
       const god = izabraneUsluge.datum.getFullYear();
@@ -81,10 +84,21 @@ const Detaljitermina = () => {
   //     from:"+17076570783",
   //     to:`${brojKorisnika}`
   // });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  
+  setModalMessageDetalji(`Uspešno ste zakazali termin za ${formatiranDatum} kod frizera ${frizerValue}.`);
+  setIsSuccessDetalji(true);
+  setShowModalDetalji(true);
+} catch (e) {
+  console.error("Error adding document: ", e);
+  setModalMessageDetalji("Došlo je do greške prilikom zakazivanja termina. Molimo pokušajte ponovo.");
+  setIsSuccessDetalji(false);
+  setShowModalDetalji(true);
+}
+};
+
+const handleModalCloseDetalji = () => {
+  setShowModalDetalji(false);
+  if (isSuccessDetalji) {
+    history.push("/PocetnaStrana");
   }
 };
 
@@ -117,6 +131,19 @@ return (
     </div>
     <button onClick={handleZakazi} className="dugmezazakazivanje">Zakaži</button>
     </div>
+    {showModalDetalji && (
+  <div className="modal-overlay22">
+    <div className="modal-content22">
+      <p>{modalMessageDetalji}</p>
+      <button
+        onClick={handleModalCloseDetalji}
+        className={`modal-close-button22 ${isSuccessDetalji ? "success" : "error"}`}
+      >
+        OK
+      </button>
+    </div>
+  </div>
+)}
     <BackButton>Nazad</BackButton>
   </>
 );

@@ -32,6 +32,10 @@
 .novi-frizer-input22 {
   max-width: 200px;
   padding: 0 2rem;
+  width: 100%;
+}
+
+.selectcentriranje {
   display: flex;
   justify-content: center;
   align-items: center;

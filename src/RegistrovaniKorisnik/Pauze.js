@@ -95,6 +95,7 @@ console.log(frizer)
   return (
     <>
     <p className={styles["izaberifrizera22"]}>Izaberite Frizera.</p>
+    <div className={styles["selectcentriranje"]}>
     <Select
   labelId="frizer-label"
   id="frizer-select"
@@ -110,7 +111,7 @@ console.log(frizer)
     </MenuItem>
   ))}
 </Select>
-
+</div>
     
     
     <div className={styles["pauza-container"]}>
