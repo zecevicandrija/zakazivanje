@@ -83,31 +83,6 @@ const Pocetna = () => {
         </div>
       </section>
 
-      <footer className={classes.footer}>
-        <div className={classes.footerContent}>
-          <div className={classes.footerLogo}>
-            <img src={undologoo} alt="UNDO Logo" className={classes.footerLogoImg} />
-            <span>Undo Vrbas</span>
-          </div>
-          <div className={classes.footerLinks}>
-            <a href="#" className={classes.footerLink}>Privatnost</a>
-            <a href="#" className={classes.footerLink}>Uslovi korišćenja</a>
-            <a href="#" className={classes.footerLink}>Kontakt</a>
-          </div>
-          <div className={classes.footerSocial}>
-            <a
-              href="https://www.instagram.com/zecevic__a/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={instaicon} alt="Instagram" className={classes.footerSocialIcon} />
-            </a>
-          </div>
-        </div>
-        <div className={classes.footerCopyright}>
-          &copy; {new Date().getFullYear()} Undo Vrbas. Sva prava zadržana.
-        </div>
-      </footer>
     </div>
   );
 };

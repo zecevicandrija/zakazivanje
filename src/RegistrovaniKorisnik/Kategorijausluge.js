@@ -148,7 +148,7 @@ const Kategorijausluge = () => {
               onChange={kategorijaHandler}
               label="Kategorija"
               variant="outlined"
-              className="novi-frizer-input"
+              className="novi-frizer-input2"
             />
           )}
           {izmenaMode ? (

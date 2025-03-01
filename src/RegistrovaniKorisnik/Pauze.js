@@ -94,7 +94,7 @@ console.log(frizer)
 
   return (
     <>
-    <p>Izaberite Frizera.</p>
+    <p className={styles["izaberifrizera22"]}>Izaberite Frizera.</p>
     <Select
   labelId="frizer-label"
   id="frizer-select"
@@ -102,7 +102,7 @@ console.log(frizer)
   options={frizeriList}
   label="Frizer"
   onChange={handleFrizerChange}
-  className="novi-frizer-input"
+  className={styles["novi-frizer-input22"]}
 >
   {frizeriList.map((frizerItem) => (
     <MenuItem key={frizerItem} value={frizerItem}>

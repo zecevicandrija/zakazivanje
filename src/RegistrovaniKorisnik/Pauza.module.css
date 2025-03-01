@@ -1,92 +1,171 @@
 /* Pauza.module.css */
 
 .pauza-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.izaberifrizera22 {
+  margin: 100px auto 20px auto;
+  max-width: 800px;
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+
+.novi-frizer-input22 {
+  max-width: 200px;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: auto;
+}
+
+.react-calendar__navigation button {
+  background: #f0f0f0 !important;
+  color: #333 !important;
+  min-width: 44px;
+}
+
+.react-calendar__tile--active {
+  background: #4a90e2 !important;
+  color: white !important;
+}
+
+.react-calendar__tile--now {
+  background: #ffeb3b !important;
+}
+
+.slider-container {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #4a90e2;
+  margin-top: 0.5rem;
+  font-weight: 600;
 }
 
 .pauza-checkboxes {
   display: flex;
-  margin-bottom: 10px;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
 }
 
-.pauza-checkboxes div {
-  margin-right: 20px;
-}
-
-.calendar-container {
-  width: 300px; /* Prilagodite širinu kalendara prema vašem dizajnu */
-  margin-bottom: 20px;
-}
-
-.slider-container {
-  width: 300px; /* Prilagodite širinu slajdera prema vašem dizajnu */
+.pauza-checkboxes label {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 0.5rem;
+  color: #444;
 }
 
-.slider-value {
-  margin-left: 10px;
+.pauza-checkboxes input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4a90e2;
 }
 
 .pauza-time-inputs {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  margin: 2rem 0;
 }
 
-.pauza-time-inputs label {
-  margin-right: 10px;
+.Select__control {
+  background: #f8f9fa !important;
+  border: 1px solid #ddd !important;
+  border-radius: 6px !important;
+  min-height: 42px !important;
+}
+
+.Select__control--is-focused {
+  border-color: #4a90e2 !important;
+  box-shadow: 0 0 0 1px #4a90e2 !important;
 }
 
 .button {
-  background-color: #007bff; /* Prilagodite boju dugmeta prema vašem dizajnu */
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #4a90e2;
   color: white;
   border: none;
-  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
 .button:hover {
-  background-color: #0056b3; /* Prilagodite boju na hover prema vašem dizajnu */
+  background: #357abd;
 }
 
-/* Stilovi za Select komponentu iz biblioteke react-select */
-.Select__control {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  padding: 8px;
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  .izaberifrizera,
+  .novi-frizer-input22 {
+    padding: 0 1.5rem;
+    margin-top: 80px;
+  }
+  .pauza-container {
+      margin: 1rem;
+      padding: 1.5rem;
+  }
+
+  .react-calendar {
+      font-size: 0.9rem;
+  }
+
+  .slider-container {
+      margin: 1.5rem 0;
+  }
+
+  .pauza-checkboxes {
+      flex-direction: column;
+  }
 }
 
-.Select__value-container {
-  flex: 1;
-}
+@media (max-width: 480px) {
+  .izaberifrizera,
+  .novi-frizer-input22 {
+    padding: 0 1rem;
+    margin-top: 60px;
+  }
+  .pauza-container {
+      padding: 1rem;
+  }
 
-.Select__indicator {
-  color: #007bff; /* Prilagodite boju indikatora prema vašem dizajnu */
-}
+  .react-calendar__navigation button {
+      min-width: 36px;
+      padding: 6px;
+  }
 
-.Select__indicator:hover {
-  color: #0056b3; /* Prilagodite boju indikatora na hover prema vašem dizajnu */
-}
-
-.Select__menu {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 2px;
-}
-
-.Select__option {
-  padding: 8px;
-}
-
-.Select__option:hover {
-  background-color: #f2f2f2; /* Prilagodite boju opcije na hover prema vašem dizajnu */
+  .button {
+      padding: 10px;
+      font-size: 0.9rem;
+  }
 }

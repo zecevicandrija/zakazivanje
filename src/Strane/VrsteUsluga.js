@@ -6,6 +6,7 @@ import { db } from "../firebase/firebaseconfig";
 import "../RegistrovaniKorisnik/ErrorModal.css";
 import { collection, getDocs, query } from "firebase/firestore";
 import BackButton from "./Dugmenazad";
+import Footer from "./Footer";
 
 const VrsteUsluga = ({ isLoggedIn }) => {
   const history = useHistory();
@@ -86,7 +87,7 @@ const VrsteUsluga = ({ isLoggedIn }) => {
   return (
     <div>
       <div className="uslugecentar">
-        <h1 className="usluge">Usluge</h1>
+        <h1 className="uslugenaslov">Usluge</h1>
       </div>
       <div className="pazljivocentar">
         <div className="pazljivo">

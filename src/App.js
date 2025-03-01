@@ -20,6 +20,7 @@ import Statistika from './RegistrovaniKorisnik/Statistika';
 import RadnoVreme from './RegistrovaniKorisnik/Radnovreme';
 import Kategorijausluge from './RegistrovaniKorisnik/Kategorijausluge';
 import Usluga from './RegistrovaniKorisnik/Usluge';
+import Footer from './Strane/Footer';
 
 import { getAuth, onAuthStateChanged } from '@firebase/auth'
 
@@ -50,9 +51,10 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="app-container">
         <NavBar/>
         
+        <main className="main-content">
         <Switch>
           {!user && (
             <Route path="/bickejilogin">
@@ -118,8 +120,8 @@ function App() {
           
           
         </Switch>
-        
-        
+        </main>
+        <Footer />
       </div>
       </>
   );

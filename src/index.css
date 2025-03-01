@@ -21,6 +21,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll; /* Dozvoli samo vertikalno skrolovanje */
   overflow-x: hidden;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 20px 0; /* Опциони padding */
+}
+
+/* Глобални стилови за распоред */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 0;
 }
 
 /* Eksplicitno postavljanje fonta na sve elemente koji bi mogli imati podrazumevane fontove */

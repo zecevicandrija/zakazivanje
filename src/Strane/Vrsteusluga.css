@@ -4,10 +4,16 @@
   object-fit: cover; /* Održava proporcije slike */
 }
 
+.uslugenaslov {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+}
+
 .pazljivocentar {
   display: flex;
   justify-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
   align-items: center;
   text-align: center; 
 }
@@ -216,6 +222,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  margin-top: 50px;
 }
 
 .kraj {
@@ -323,6 +330,7 @@
     justify-content: center;
     align-items: center;
     gap: 0px;
+    margin-top: 0px;
   }
 
 
