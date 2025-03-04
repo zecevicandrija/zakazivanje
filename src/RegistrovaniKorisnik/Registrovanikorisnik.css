@@ -303,6 +303,7 @@
 @media (max-width: 768px) {
   .bigcalendar {
     padding: 10px;
+    margin-bottom: 40px;
   }
   
   .kalendarroditelj {
@@ -399,5 +400,83 @@
   /* Agenda prikaz za mobilne */
   .kalendar .rbc-agenda-view {
     font-size: 12px;
+  }
+}
+@media (max-width: 405px) {
+  .bigcalendar {
+    max-width: 100%;
+    padding: 10px 5px;
+    margin-top: 80px;
+    box-shadow: none;
+  }
+
+  .kalendarroditelj {
+    height: 500px;
+    margin-top: 10px;
+    overflow-x: hidden;
+  }
+
+  .kalendar .rbc-toolbar {
+    padding: 5px;
+  }
+
+  .kalendar .rbc-header {
+    padding: 5px 2px;
+    font-size: 11px;
+    min-width: 0;
+  }
+
+  .kalendar .rbc-day-bg {
+    min-width: 40px;
+  }
+
+  .kalendar .rbc-toolbar button {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .kalendar .rbc-event {
+    font-size: 9px;
+    padding: 2px 3px;
+  }
+
+  .kalendar .rbc-agenda-view table {
+    width: 100%!important;
+  }
+
+  .rbc-agenda-time-cell {
+    width: 90px;
+    padding: 5px;
+  }
+
+  .rbc-agenda-date-cell {
+    padding: 5px;
+  }
+
+  .calendar-button {
+    padding: 2px 4px;
+    font-size: 9px;
+  }
+
+  .view-button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .frizercontain {
+    width: 90%;
+  }
+
+  .kalendar .rbc-time-header {
+    overflow: hidden;
+  }
+
+  .kalendar .rbc-time-content {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .kalendar .rbc-time-content::-webkit-scrollbar {
+    display: none;
   }
 }

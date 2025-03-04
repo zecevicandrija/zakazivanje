@@ -92,9 +92,6 @@ h2 {
   min-width: 100px;
 }
 
-.modal-button-delete {
-  color: #e74c3c !important;
-}
 
 .modal-button-delete:hover {
   background-color: #c0392b;

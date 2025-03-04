@@ -206,6 +206,9 @@
   .modal123 {
     width: 85%; /* Slightly narrower on mobile */
   }
+  .modal-content {
+    width: 70%;
+  }
 }
 
 @media (max-width: 480px) {
