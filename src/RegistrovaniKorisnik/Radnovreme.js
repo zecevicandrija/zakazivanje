@@ -220,7 +220,7 @@ const RadnoVreme = () => {
             />
             <CardContent>
               <Grid container spacing={3}>
-                {Object.keys(workHours).map((day) => (
+                {Object.keys(daniPrevod).map((day) => (
                   <Grid item xs={12} sm={6} md={4} key={day}>
                     <Paper elevation={2} className="day-card" sx={{ p: 2 }}>
                       <Typography variant="h6" className="day-header">

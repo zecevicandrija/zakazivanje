@@ -1,247 +1,220 @@
-/*  
-  Stilovi isključivo za ovu komponentu - ne utiču na ceo projekat.
-  Koristi se font "Bai Jamjuree" i animacije pri učitavanju.
-*/
+/* Onama.css */
 
 .onama {
-  font-family: "Bai Jamjuree", sans-serif;
-  animation: fadeInUp 0.8s ease-out;
-  padding: 20px;
-}
-
-/* Animacija celog sadržaja */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Pozadinska slika sa zum efektom */
-.onama__pozadina {
   position: relative;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background-color: #f9f9f9;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin-top: 40px;
+}
+
+.onama__pozadina {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
   overflow: hidden;
 }
 
 .onama__wallpaper {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  filter: brightness(0.7);
-  animation: zoomIn 8s ease-out forwards;
+  opacity: 0.1;
 }
 
-@keyframes zoomIn {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
-}
-
-/* Naslov stranice */
 .onama__naslov {
-  text-align: center;
-  margin-top: -60px; /* prilagodi u zavisnosti od željenog preklapanja */
-  color: #fff;
-  font-size: 2.5rem;
   position: relative;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2d3436;
+  margin-bottom: 2rem;
   z-index: 1;
-  animation: fadeInDown 1s ease-out;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Glavni kontejner za sadržaj */
 .onama__container {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* Sekcije sa tekstom i slikom */
 .onama__content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 40px 0;
-  opacity: 0;
-  animation: slideIn 1s forwards;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background: rgba(255,255,255,0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.onama__content:nth-child(odd) {
-  animation-delay: 0.3s;
-}
-.onama__content:nth-child(even) {
-  animation-delay: 0.5s;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Reverzija rasporeda u drugoj sekciji */
 .onama__content--reverse {
   flex-direction: row-reverse;
 }
 
-/* Tekstualni deo */
 .onama__text {
   flex: 1;
-  padding: 20px;
 }
 
 .onama__text h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: 1.8rem;
+  color: #0984e3;
+  margin-bottom: 1rem;
 }
 
 .onama__text p {
-  font-size: 1rem;
   line-height: 1.6;
+  margin-bottom: 1.5rem;
   color: #555;
 }
 
-/* Stil slike unutar sekcije */
 .onama__img {
-  flex: 1;
-  max-width: 100%;
-  border-radius: 10px;
+  width: 300px;
+  height: 200px;
   object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  animation: fadeIn 1.2s ease-out;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Informativni boxovi */
 .onama__informacije {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 40px 0;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  animation: fadeIn 1s ease-out;
+  gap: 2rem;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .onama__info-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 20px;
-  min-width: 150px;
   text-align: center;
+  padding: 1rem;
 }
 
 .onama__info-icon {
   font-size: 2rem;
-  font-weight: 600;
-  color: #f39c12;
-  margin-bottom: 10px;
+  font-weight: bold;
+  color: #0984e3;
+  margin-bottom: 0.5rem;
 }
 
 .onama__info-text {
-  font-size: 1rem;
-  color: #333;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-/* Vertikalna linija između boxova */
 .onama__vertical-line {
-  width: 1px;
   height: 50px;
-  background-color: #ccc;
-  margin: 0 10px;
+  width: 1px;
+  background-color: #ddd;
 }
 
-/* Stil za Google map iframe */
 .onama__guglmapa {
   width: 100%;
-  max-width: 800px;
   height: 250px;
   border: none;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto 20px;
-  animation: fadeIn 1s ease-out;
+  border-radius: 15px;
+  margin: 2rem 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-/* Kontakt i lokacija info */
 .onama__lokacija-info {
   text-align: center;
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 40px;
+  padding: 1rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  margin: 2rem auto;
+  max-width: 600px;
 }
 
 .onama__lokacija-info p {
-  margin: 10px 0;
+  margin: 0.5rem 0;
+  color: #555;
 }
 
-.onama__lokacija-info a {
-  color: #f39c12;
+.onama__sajtradili a {
+  color: #0984e3;
   text-decoration: none;
   transition: color 0.3s ease;
+  cursor: pointer;
+  position: relative;
 }
 
-.onama__lokacija-info a:hover {
-  color: #d97c0d;
+.onama__sajtradili a:hover {
+  color: #0873c4;
 }
 
-/* Responsivni stilovi */
 @media (max-width: 768px) {
   .onama__content {
     flex-direction: column;
-    text-align: center;
+    padding: 1.5rem;
   }
   
   .onama__content--reverse {
     flex-direction: column;
   }
   
-  .onama__text,
   .onama__img {
-    padding: 10px;
-    margin: 0;
+    width: 100%;
+    height: auto;
   }
   
   .onama__informacije {
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
   }
   
   .onama__vertical-line {
     display: none;
   }
+  
+  .onama__naslov {
+    font-size: 2rem;
+  }
+  
+  .onama__text h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .onama__info-icon {
+    font-size: 1.5rem;
+  }
+  
+  .onama__info-text {
+    font-size: 0.8rem;
+  }
+  
+  .onama__lokacija-info {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation effects */
+.onama__content {
+  transition: transform 0.3s ease;
+}
+
+.onama__content:hover {
+  transform: translateY(-5px);
+}
+
+.onama__info-box {
+  transition: all 0.3s ease;
+}
+
+.onama__info-box:hover {
+  transform: scale(1.05);
 }

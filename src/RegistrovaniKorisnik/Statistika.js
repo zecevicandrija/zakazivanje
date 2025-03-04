@@ -4,6 +4,8 @@ import { db } from "../firebase/firebaseconfig";
 import "./Statistika.css";
 import { FormControl, InputLabel, Select, TextField } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import { Button } from "@mui/material";
+import { Download } from "@mui/icons-material";
 
 const Statistika = () => {
   const [myEvents, setMyEvents] = useState([]);
@@ -45,7 +47,6 @@ const Statistika = () => {
 
         const noviNiz = querySnapshot.docs.map((doc) => {
           const data = doc.data();
-          // Ako nije definiran, koristimo podrazumevani "00:00"
           const pocetakTerminaValue =
             data.izabraneUsluge.pocetakTermina &&
             data.izabraneUsluge.pocetakTermina.value
@@ -83,12 +84,10 @@ const Statistika = () => {
             brojKorisnika: data.brojKorisnika,
             frizer: data.izabraneUsluge.frizer,
             usluge: uslugeString,
-            // Ako nema polje cena, tretiramo kao 0
             cena: data.izabraneUsluge.cena ? Number(data.izabraneUsluge.cena) : 0,
           };
         });
 
-        // Sortiramo termine tako da najnoviji (najveći datum) budu prvi
         noviNiz.sort((a, b) => b.start.getTime() - a.start.getTime());
         console.log("Sorted events:", noviNiz);
 
@@ -103,7 +102,6 @@ const Statistika = () => {
         console.error("Error fetching data:", error);
       }
 
-      // Dohvati listu frizera/trenera
       const frizeriQuerySnapshot = await getDocs(collection(db, "frizeri"));
       const frizeriData = frizeriQuerySnapshot.docs.map(
         (doc) => doc.data().frizer.ime
@@ -118,9 +116,7 @@ const Statistika = () => {
     setFilterIme(event.target.value);
   };
 
-  // Ako je unesena prazan string, postavi state na null
   const handleStartDateChange = (dateString) => {
-    console.log("handleStartDateChange:", dateString);
     if (!dateString) {
       setStartDate(null);
     } else {
@@ -129,7 +125,6 @@ const Statistika = () => {
   };
 
   const handleEndDateChange = (dateString) => {
-    console.log("handleEndDateChange:", dateString);
     if (!dateString) {
       setEndDate(null);
     } else {
@@ -146,7 +141,6 @@ const Statistika = () => {
 
   const renderPaginationButtons = () => {
     const pageButtons = [];
-
     for (let i = 1; i <= totalPages; i++) {
       pageButtons.push(
         <li key={i} className={`page-item ${currentPage === i ? "active" : ""}`}>
@@ -156,15 +150,61 @@ const Statistika = () => {
         </li>
       );
     }
-
     return pageButtons;
+  };
+
+  const handleDownload = () => {
+    if (myEvents.length === 0) {
+      alert("Nema podataka za preuzimanje!");
+      return;
+    }
+
+    const csvContent = [
+      [
+        "Ime klijenta",
+        "Broj klijenta",
+        "Usluge",
+        "Datum",
+        "Vreme",
+        "Frizer",
+        "Cena",
+      ],
+      ...myEvents.map((item) => [
+        `"${item.imeKorisnika}"`,
+        `"${item.brojKorisnika}"`,
+        `"${item.usluge}"`,
+        item.start.toLocaleDateString(),
+        item.start.toLocaleTimeString(),
+        `"${item.frizer}"`,
+        item.cena,
+      ]),
+    ]
+      .map((e) => e.join(","))
+      .join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", "statistika.csv");
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
     <div className="statistika">
       <div className="filters">
-        <FormControl className="filter-select" variant="outlined" sx={{ minWidth: 200 }}>
-          <InputLabel sx={{ fontFamily: "Bai Jamjuree, sans-serif" }}>Frizer</InputLabel>
+        <FormControl
+          className="filter-select"
+          variant="outlined"
+          sx={{ minWidth: 200 }}
+        >
+          <InputLabel sx={{ fontFamily: "Bai Jamjuree, sans-serif" }}>
+            Frizer
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -172,17 +212,25 @@ const Statistika = () => {
             label="Frizer"
             onChange={(event) => setOdabraniFrizer(event.target.value)}
           >
-            <MenuItem key="all" value="" style={{ fontFamily: "Bai Jamjuree, sans-serif" }}>
+            <MenuItem
+              key="all"
+              value=""
+              style={{ fontFamily: "Bai Jamjuree, sans-serif" }}
+            >
               Svi frizeri
             </MenuItem>
             {frizeriList.map((frizerItem) => (
-              <MenuItem key={frizerItem} value={frizerItem} style={{ fontFamily: "Bai Jamjuree, sans-serif" }}>
+              <MenuItem
+                key={frizerItem}
+                value={frizerItem}
+                style={{ fontFamily: "Bai Jamjuree, sans-serif" }}
+              >
                 {frizerItem}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
-        
+
         <TextField
           value={filterIme}
           onChange={filterHandler}
@@ -216,41 +264,19 @@ const Statistika = () => {
       </div>
 
       <div className="table-container">
-        <table className="event-table">
-          <thead>
-            <tr>
-              <th>Ime klijenta</th>
-              <th>Broj klijenta</th>
-              <th>Naručene usluge</th>
-              <th>Datum</th>
-              <th>Sati</th>
-              <th>Trener</th>
-              <th>Cena</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((item, index) => {
-              if (
-                (!startDate || item.start >= startDate) &&
-                (!endDate || item.start <= endDate)
-              ) {
-                return (
-                  <tr key={index}>
-                    <td>{item.imeKorisnika}</td>
-                    <td>{item.brojKorisnika}</td>
-                    <td>{item.usluge}</td>
-                    <td>{item.start.toLocaleDateString()}</td>
-                    <td>{item.start.toLocaleTimeString()}</td>
-                    <td>{item.frizer}</td>
-                    <td>{item.cena}</td>
-                  </tr>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </tbody>
-        </table>
+        {currentItems.map((item, index) => (
+          <div className="event-card" key={index}>
+            <div className="details">
+              <div><b>Ime:</b> {item.imeKorisnika}</div>
+              <div><b>Broj:</b> {item.brojKorisnika}</div>
+              <div><b>Usluge:</b> {item.usluge}</div>
+              <div><b>Datum:</b> {item.start.toLocaleDateString()}</div>
+              <div><b>Vreme:</b> {item.start.toLocaleTimeString()}</div>
+              <div><b>Frizer:</b> {item.frizer}</div>
+              <div><b>Cena:</b> {item.cena}</div>
+            </div>
+          </div>
+        ))}
       </div>
 
       <nav className="pagination-container">
@@ -258,8 +284,17 @@ const Statistika = () => {
       </nav>
 
       <div className="total-earnings">
-        <b>Ukupna zarada: {ukupnaZarada}</b>
+        <b>Ukupna zarada:</b> {ukupnaZarada}rsd
       </div>
+
+      {/* <Button
+        variant="contained"
+        className="download-btn"
+        onClick={handleDownload}
+        startIcon={<Download />}
+      >
+        Preuzmi CSV
+      </Button> */}
     </div>
   );
 };

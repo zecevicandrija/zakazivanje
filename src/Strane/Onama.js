@@ -79,7 +79,7 @@ const Onama = () => {
           <b>Broj telefona:</b> 069 706784
         </p>
         <p className="onama__sajtradili">
-          <b>Sajt radili:</b>{" "}
+          <b>Aplikaciju radili: </b>
           <a href="https://www.undovrbas.com" target="_blank" rel="noopener noreferrer">
             UNDO VRBAS
           </a>

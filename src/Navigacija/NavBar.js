@@ -51,23 +51,30 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <Link to="/PocetnaStrana">
+          <Link to="/PocetnaStrana" onClick={closeMenu}>
             <img src={undologoo} alt="Logo" />
           </Link>
         </div>
         {/* Navigacioni linkovi */}
         <nav className={`navbar-menu ${isMenuOpen ? 'open' : ''}`} onClick={handleMenuClick}>
-          <NavLink exact to="/PocetnaStrana" activeClassName="active-link">Pocetna</NavLink>
-          <NavLink to="/Onama" activeClassName="active-link">O nama</NavLink>
-          <NavLink to="/Odabrirfrizera" activeClassName="active-link">Usluge</NavLink>
-          {user && <NavLink to="/loginovan" activeClassName="active-link">Termini</NavLink>}
-          {user && <NavLink to="/Kategorija" activeClassName="active-link">Kategorija</NavLink>}
-          {user && <NavLink to="/pauza" activeClassName="active-link">Pauza</NavLink>}
-          {user && <NavLink to="/Statistika" activeClassName="active-link">Statistika</NavLink>}
-          {user && <NavLink to="/usluge" activeClassName="active-link">Tabela Usluge</NavLink>}
-          {user && <NavLink to="/Radnovreme" activeClassName="active-link">Radno vreme</NavLink>}
+          <NavLink exact to="/PocetnaStrana" activeClassName="active-link" onClick={closeMenu}>Početna</NavLink>
+          <NavLink to="/Onama" activeClassName="active-link" onClick={closeMenu}>O nama</NavLink>
+          <NavLink to="/Odabrirfrizera" activeClassName="active-link" onClick={closeMenu}>Usluge</NavLink>
+          {user && <NavLink to="/loginovan" activeClassName="active-link" onClick={closeMenu}>Termini</NavLink>}
+          {user && <NavLink to="/Kategorija" activeClassName="active-link" onClick={closeMenu}>Kategorija</NavLink>}
+          {user && <NavLink to="/pauza" activeClassName="active-link" onClick={closeMenu}>Pauza</NavLink>}
+          {user && <NavLink to="/Statistika" activeClassName="active-link" onClick={closeMenu}>Statistika</NavLink>}
+          {user && <NavLink to="/usluge" activeClassName="active-link" onClick={closeMenu}>Tabela Usluge</NavLink>}
+          {user && <NavLink to="/Radnovreme" activeClassName="active-link" onClick={closeMenu}>Radno vreme</NavLink>}
           {user && (
-            <Link to="/Odjava" className="navbar-link" onClick={handleLogoutClick}>
+            <Link
+              to="/Odjava"
+              className="navbar-link"
+              onClick={(e) => {
+                handleLogoutClick();
+                closeMenu();
+              }}
+            >
               Izloguj se
             </Link>
           )}

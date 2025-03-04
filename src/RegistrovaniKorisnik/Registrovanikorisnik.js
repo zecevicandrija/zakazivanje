@@ -355,6 +355,7 @@ const Registrovanikorisnik = () => {
             variant="secondary"
             onClick={handleCloseModal}
             className="modal-button modal-button-cancel"
+            style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}
           >
             Otkaži
           </Button>
@@ -362,6 +363,7 @@ const Registrovanikorisnik = () => {
             variant="primary"
             onClick={handleDeleting}
             className="modal-button modal-button-delete"
+            style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}
           >
             Obriši
           </Button>

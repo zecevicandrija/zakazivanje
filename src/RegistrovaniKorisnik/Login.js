@@ -92,7 +92,7 @@ const Login = () => {
 
       {/* Prikaz ErrorModal-a ako postoji greška */}
       {error && (
-        <div className="modal">
+        <div className="modal2">
           <div className="modal-content">
             <p className="modal-question">
               {error.includes('password')

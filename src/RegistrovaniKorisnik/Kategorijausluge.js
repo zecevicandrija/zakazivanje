@@ -140,6 +140,7 @@ const Kategorijausluge = () => {
               label="Izmeni kategoriju"
               variant="outlined"
               className="novi-frizer-input-izmena"
+              style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}
             />
           ) : (
             // Prikazi polje za dodavanje kategorije
@@ -149,16 +150,17 @@ const Kategorijausluge = () => {
               label="Kategorija"
               variant="outlined"
               className="novi-frizer-input2"
+              style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}
             />
           )}
           {izmenaMode ? (
             // Prikazi dugme za čuvanje izmene
-            <Button variant="contained" onClick={sacuvajIzmenu}>
+            <Button variant="contained" onClick={sacuvajIzmenu} style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}>
               Sačuvaj izmenu
             </Button>
           ) : (
             // Prikazi dugme za dodavanje kategorije
-            <Button variant="contained" onClick={slanjeKategorijeBazi}>
+            <Button variant="contained" onClick={slanjeKategorijeBazi} style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}>
               Dodaj kategoriju
             </Button>
           )}
@@ -170,8 +172,8 @@ const Kategorijausluge = () => {
             {fbKategorije.map((item) => (
               <li key={item.id}>
                 {item.kategorija}
-                <Button onClick={() => rejectEvent(item)}>Obriši</Button>
-                <Button onClick={() => prikaziIzmenu(item.id, item.kategorija)}>Izmeni</Button>
+                <Button onClick={() => rejectEvent(item)} style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}>Obriši</Button>
+                <Button onClick={() => prikaziIzmenu(item.id, item.kategorija)} style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}>Izmeni</Button>
               </li>
             ))}
           </ul>
@@ -189,6 +191,7 @@ const Kategorijausluge = () => {
             variant="secondary"
             onClick={handleCloseModal}
             className="modal-button modal-button-cancel"
+            style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}
           >
             Otkaži
           </Button>
@@ -196,6 +199,7 @@ const Kategorijausluge = () => {
             variant="primary"
             onClick={handleConfirmDelete}
             className="modal-button modal-button-delete"
+            style={{ fontFamily: '"Bai Jamjuree", sans-serif'}}
           >
             Obriši
           </Button>

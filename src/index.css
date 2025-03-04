@@ -1,17 +1,14 @@
-/* Uvoz Bai Jamjuree fonta */
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
 
-/* Postavljanje fonta na root nivo */
 :root {
   --font-family: "Bai Jamjuree", sans-serif;
 }
 
-/* Globalni reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Bai Jamjuree", sans-serif; /* Postavljanje fonta globalno na sve elemente */
+  font-family: "Bai Jamjuree", sans-serif;
 }
 
 body {
@@ -29,10 +26,9 @@ body {
 
 main {
   flex: 1;
-  padding: 20px 0; /* Опциони padding */
+  padding: 20px 0;
 }
 
-/* Глобални стилови за распоред */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -44,7 +40,6 @@ main {
   padding: 20px 0;
 }
 
-/* Eksplicitno postavljanje fonta na sve elemente koji bi mogli imati podrazumevane fontove */
 h1, h2, h3, h4, h5, h6,
 p, span, a, button, input, textarea, select, option,
 li, ol, ul, 
@@ -59,4 +54,20 @@ code {
 
 input, button, textarea, select {
   font-family: "Bai Jamjuree", sans-serif;
+}
+
+.MuiInputLabel-root {
+  font-family: "Bai Jamjuree", sans-serif !important;
+}
+
+.MuiSelect-root,
+.MuiMenuItem-root,
+.MuiInputBase-root {
+  font-family: "Bai Jamjuree", sans-serif !important;
+}
+.MuiTextField-root {
+  font-family: "Bai Jamjuree", sans-serif !important;
+}
+.MuiButton-root {
+  font-family: "Bai Jamjuree", sans-serif !important;
 }

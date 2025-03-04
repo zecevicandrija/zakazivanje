@@ -11,7 +11,7 @@ import { useState } from "react";
   //import BackButton from "./Dugmenazad";
   import Modal from "react-bootstrap/Modal";
   import Button from "react-bootstrap/Button";
-import BackButton from "./Dugmenazad";
+
   
 
   const Termini = () => {
@@ -206,7 +206,6 @@ return (
       <img src={pozadina5} className="terminipozadina2" alt="pozadina"/>
       </div> */}
     <div className="big-container">
-      <BackButton />
 <div className="small-container">
         <h1 className="terminitekst">Termini:</h1>
         <p className="terminipritisnite">Pritisnite na dugme termina koji želite odabrati.</p>
@@ -239,23 +238,43 @@ return (
             </div>
           ))}
         </div>
-        <div className="modal-overlay" />
-        <Modal show={showModal} onHide={handleCloseModal} className="modal">
-        <Modal.Header
+        {showModal && (
+  <div className="modal-overlay123" onClick={handleCloseModal}>
+    <Modal
+      show={showModal}
+      onHide={handleCloseModal}
+      className="modal123"
+      // Sprečava propagaciju klika na modalu, tako da se klik unutar modala ne prenosi na overlay
+      onClick={(e) => e.stopPropagation()}
+    >
+      <Modal.Header>
+        <Modal.Title>Pritisnite 'Dalje' ako ste odabrali zeljeni termin.</Modal.Title>
+      </Modal.Header>
+      <div className="vertical-line3"></div>
+      <Modal.Body className="modal-question-termini">
+        Termin: <b>{pocetakTermina}h</b>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          onClick={handleCloseModal}
+          className="modal-button-promeni"
         >
-          <Modal.Title>Pritisnite 'Dalje' ako ste odabrali zeljeni termin.</Modal.Title>
-        </Modal.Header>
-        <div className="vertical-line3"></div>
-        <Modal.Body className="modal-question">Termin: {pocetakTermina}h</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal} className="modal-button-promeni">
-            Promeni
-          </Button>
-          <Button variant="primary" onClick={slanjeterminabazi} className="modal-button-dalje" to="/Podacikorisnika">
-            Dalje
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          Promeni
+        </Button>
+        <Button
+          variant="primary"
+          onClick={slanjeterminabazi}
+          className="modal-button-dalje"
+          to="/Podacikorisnika"
+        >
+          Dalje
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  </div>
+)}
+
       </div>
     </div>
   </>

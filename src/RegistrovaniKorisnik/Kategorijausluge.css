@@ -1,83 +1,162 @@
-/* Stil za formu za unos nove kategorije */
-.novi-frizer-input2 {
-    margin-right: 10px;
-    margin-top: 50px;
-  }
 
-  .top {  
-    margin-top: 10%;
-  }
 
+/* Main container */
+.top {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  margin-top: 100px;
+}
+
+/* Input section */
+.prvidiv {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.novi-frizer-input2,
+.novi-frizer-input-izmena {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Buttons */
+.prvidiv button {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.8rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Category list */
+h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.kategorijekartice {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.kategorijekartice li {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.kategorijekartice li:hover {
+  transform: translateY(-3px);
+}
+
+.kategorijekartice button {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+}
+
+/* Modal styling */
+.modal .modal-header {
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.modal .modal-title {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.modal .modal-body {
+  padding: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.modal .modal-footer {
+  border-top: none;
+  padding: 1rem 1.5rem;
+}
+
+.modal-button {
+  min-width: 100px;
+}
+
+.modal-button-delete {
+  color: #e74c3c !important;
+}
+
+.modal-button-delete:hover {
+  background-color: #c0392b;
+}
+
+.modal-button-cancel {
+  color: #2c3e50 !important;
+}
+
+.novi-frizer-input2 .MuiInputBase-input,
+.novi-frizer-input-izmena .MuiInputBase-input {
+  font-family: "Bai Jamjuree", sans-serif;
+}
+
+.modal-button-cancel:hover {
+  background-color: #95a5a6;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
   .prvidiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
   }
 
-  .prvidiv .novi-frizer-input {
-    margin-bottom: 2%;
+  .kategorijekartice {
+      grid-template-columns: 1fr;
   }
 
-  .prvidiv .novi-frizer-input-izmena {
-    margin-bottom: 2%;
+  .kategorijekartice li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
   }
 
-  
-  /* Stil za listu kategorija */
-  ul {
-    list-style-type: none;
-    padding: 0;
-    width: 30%;
-    margin: 0 auto; /* Automatsko centriranje */
+  .kategorijekartice button {
+      align-self: flex-end;
   }
-  
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  li button {
-    margin-left: 10px;
-  }
-  
-  /* Stil za input polje za izmenu kategorije */
-  .novi-frizer-input-izmena {
-    margin-right: 10px;
-  }
-  
-  /* Stil za dugme za čuvanje izmene */
-  .sacuvaj-izmenu-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .sacuvaj-izmenu-button:hover {
-    background-color: #45a049;
+}
+
+@media (max-width: 480px) {
+  .top {
+      padding: 0 0.5rem;
   }
 
-  @media only screen and (max-width: 1600px) {
-    .kategorijekartice {
-      width: auto;
-      max-width: 100%;
-      width: 50%;
-    }
-    
+  .modal .modal-content {
+      margin: 0.5rem;
   }
+}
 
-  @media only screen and (max-width: 470px) {
-    .kategorijekartice {
-      width: auto;
-      max-width: 100%;
-      width: 60%;
-    }
-  }
+/* Custom Material-UI overrides */
+.MuiOutlinedInput-root {
+  border-radius: 8px !important;
+}
+
+.MuiButton-containedPrimary {
+  background-color: #3498db !important;
+}
+
+.MuiButton-containedSecondary {
+  background-color: #95a5a6 !important;
+}
+
+.MuiButton-root:hover {
+  opacity: 0.9;
+}
